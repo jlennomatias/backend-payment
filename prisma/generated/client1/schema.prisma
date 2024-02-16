@@ -1,0 +1,61 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "./generated/client1"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL_MONGO")
+}
+
+model Payment {
+  id                        String           @id @default(auto()) @map("_id") @db.ObjectId
+  paymentId                 String
+  endToEndId                String
+  consentId                 String
+  creationDateTime          DateTime
+  statusUpdateDateTime      DateTime
+  proxy                     String
+  ibgeTownCode              String
+  status                    String
+  rejectionReasonCode       String?
+  rejectionReasonDetail     String?
+  localInstrument           String
+  cnpjInitiator             String
+  paymentAmount             String
+  paymentCurrency           String
+  transactionIdentification String
+  remittanceInformation     String
+  creditorAccount           CreditorAccount? @relation(fields: [creditorAccountId], references: [id])
+  cancellation              Cancellation?    @relation(fields: [cancellationId], references: [id])
+  creditorAccountId         String?          @db.ObjectId
+  cancellationId            String?          @db.ObjectId
+
+  @@map("payments")
+}
+
+model CreditorAccount {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  ispb        String
+  issuer      String
+  number      String
+  accountType String
+  Payment     Payment[]
+
+  @@map("creditor_accounts")
+}
+
+model Cancellation {
+  id                        String    @id @default(auto()) @map("_id") @db.ObjectId
+  reason                    String
+  cancelledFrom             String
+  cancelledAt               DateTime
+  cancelledByIdentification String
+  cancelledByRel            String
+  Payment                   Payment[]
+
+  @@map("cancellations")
+}
