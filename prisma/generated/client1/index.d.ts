@@ -24,6 +24,11 @@ export type Payment = $Result.DefaultSelection<Prisma.$PaymentPayload>
  */
 export type CreditorAccount = $Result.DefaultSelection<Prisma.$CreditorAccountPayload>
 /**
+ * Model DebtorAccount
+ * 
+ */
+export type DebtorAccount = $Result.DefaultSelection<Prisma.$DebtorAccountPayload>
+/**
  * Model Cancellation
  * 
  */
@@ -138,6 +143,16 @@ export class PrismaClient<
     * ```
     */
   get creditorAccount(): Prisma.CreditorAccountDelegate<ExtArgs>;
+
+  /**
+   * `prisma.debtorAccount`: Exposes CRUD operations for the **DebtorAccount** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more DebtorAccounts
+    * const debtorAccounts = await prisma.debtorAccount.findMany()
+    * ```
+    */
+  get debtorAccount(): Prisma.DebtorAccountDelegate<ExtArgs>;
 
   /**
    * `prisma.cancellation`: Exposes CRUD operations for the **Cancellation** model.
@@ -620,6 +635,7 @@ export namespace Prisma {
   export const ModelName: {
     Payment: 'Payment',
     CreditorAccount: 'CreditorAccount',
+    DebtorAccount: 'DebtorAccount',
     Cancellation: 'Cancellation'
   };
 
@@ -637,7 +653,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     meta: {
-      modelProps: 'payment' | 'creditorAccount' | 'cancellation'
+      modelProps: 'payment' | 'creditorAccount' | 'debtorAccount' | 'cancellation'
       txIsolationLevel: never
     },
     model: {
@@ -786,6 +802,80 @@ export namespace Prisma {
           count: {
             args: Prisma.CreditorAccountCountArgs<ExtArgs>,
             result: $Utils.Optional<CreditorAccountCountAggregateOutputType> | number
+          }
+        }
+      }
+      DebtorAccount: {
+        payload: Prisma.$DebtorAccountPayload<ExtArgs>
+        fields: Prisma.DebtorAccountFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.DebtorAccountFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$DebtorAccountPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.DebtorAccountFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$DebtorAccountPayload>
+          }
+          findFirst: {
+            args: Prisma.DebtorAccountFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$DebtorAccountPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.DebtorAccountFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$DebtorAccountPayload>
+          }
+          findMany: {
+            args: Prisma.DebtorAccountFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$DebtorAccountPayload>[]
+          }
+          create: {
+            args: Prisma.DebtorAccountCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$DebtorAccountPayload>
+          }
+          createMany: {
+            args: Prisma.DebtorAccountCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          delete: {
+            args: Prisma.DebtorAccountDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$DebtorAccountPayload>
+          }
+          update: {
+            args: Prisma.DebtorAccountUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$DebtorAccountPayload>
+          }
+          deleteMany: {
+            args: Prisma.DebtorAccountDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.DebtorAccountUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.DebtorAccountUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$DebtorAccountPayload>
+          }
+          aggregate: {
+            args: Prisma.DebtorAccountAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateDebtorAccount>
+          }
+          groupBy: {
+            args: Prisma.DebtorAccountGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<DebtorAccountGroupByOutputType>[]
+          }
+          findRaw: {
+            args: Prisma.DebtorAccountFindRawArgs<ExtArgs>,
+            result: Prisma.JsonObject
+          }
+          aggregateRaw: {
+            args: Prisma.DebtorAccountAggregateRawArgs<ExtArgs>,
+            result: Prisma.JsonObject
+          }
+          count: {
+            args: Prisma.DebtorAccountCountArgs<ExtArgs>,
+            result: $Utils.Optional<DebtorAccountCountAggregateOutputType> | number
           }
         }
       }
@@ -995,73 +1085,6 @@ export namespace Prisma {
    */
 
 
-  /**
-   * Count Type CreditorAccountCountOutputType
-   */
-
-  export type CreditorAccountCountOutputType = {
-    Payment: number
-  }
-
-  export type CreditorAccountCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Payment?: boolean | CreditorAccountCountOutputTypeCountPaymentArgs
-  }
-
-  // Custom InputTypes
-
-  /**
-   * CreditorAccountCountOutputType without action
-   */
-  export type CreditorAccountCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CreditorAccountCountOutputType
-     */
-    select?: CreditorAccountCountOutputTypeSelect<ExtArgs> | null
-  }
-
-
-  /**
-   * CreditorAccountCountOutputType without action
-   */
-  export type CreditorAccountCountOutputTypeCountPaymentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: PaymentWhereInput
-  }
-
-
-
-  /**
-   * Count Type CancellationCountOutputType
-   */
-
-  export type CancellationCountOutputType = {
-    Payment: number
-  }
-
-  export type CancellationCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Payment?: boolean | CancellationCountOutputTypeCountPaymentArgs
-  }
-
-  // Custom InputTypes
-
-  /**
-   * CancellationCountOutputType without action
-   */
-  export type CancellationCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CancellationCountOutputType
-     */
-    select?: CancellationCountOutputTypeSelect<ExtArgs> | null
-  }
-
-
-  /**
-   * CancellationCountOutputType without action
-   */
-  export type CancellationCountOutputTypeCountPaymentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: PaymentWhereInput
-  }
-
-
 
   /**
    * Models
@@ -1078,7 +1101,6 @@ export namespace Prisma {
   }
 
   export type PaymentMinAggregateOutputType = {
-    id: string | null
     paymentId: string | null
     endToEndId: string | null
     consentId: string | null
@@ -1095,12 +1117,9 @@ export namespace Prisma {
     paymentCurrency: string | null
     transactionIdentification: string | null
     remittanceInformation: string | null
-    creditorAccountId: string | null
-    cancellationId: string | null
   }
 
   export type PaymentMaxAggregateOutputType = {
-    id: string | null
     paymentId: string | null
     endToEndId: string | null
     consentId: string | null
@@ -1117,12 +1136,9 @@ export namespace Prisma {
     paymentCurrency: string | null
     transactionIdentification: string | null
     remittanceInformation: string | null
-    creditorAccountId: string | null
-    cancellationId: string | null
   }
 
   export type PaymentCountAggregateOutputType = {
-    id: number
     paymentId: number
     endToEndId: number
     consentId: number
@@ -1139,14 +1155,11 @@ export namespace Prisma {
     paymentCurrency: number
     transactionIdentification: number
     remittanceInformation: number
-    creditorAccountId: number
-    cancellationId: number
     _all: number
   }
 
 
   export type PaymentMinAggregateInputType = {
-    id?: true
     paymentId?: true
     endToEndId?: true
     consentId?: true
@@ -1163,12 +1176,9 @@ export namespace Prisma {
     paymentCurrency?: true
     transactionIdentification?: true
     remittanceInformation?: true
-    creditorAccountId?: true
-    cancellationId?: true
   }
 
   export type PaymentMaxAggregateInputType = {
-    id?: true
     paymentId?: true
     endToEndId?: true
     consentId?: true
@@ -1185,12 +1195,9 @@ export namespace Prisma {
     paymentCurrency?: true
     transactionIdentification?: true
     remittanceInformation?: true
-    creditorAccountId?: true
-    cancellationId?: true
   }
 
   export type PaymentCountAggregateInputType = {
-    id?: true
     paymentId?: true
     endToEndId?: true
     consentId?: true
@@ -1207,8 +1214,6 @@ export namespace Prisma {
     paymentCurrency?: true
     transactionIdentification?: true
     remittanceInformation?: true
-    creditorAccountId?: true
-    cancellationId?: true
     _all?: true
   }
 
@@ -1285,7 +1290,6 @@ export namespace Prisma {
   }
 
   export type PaymentGroupByOutputType = {
-    id: string
     paymentId: string
     endToEndId: string
     consentId: string
@@ -1302,8 +1306,6 @@ export namespace Prisma {
     paymentCurrency: string
     transactionIdentification: string
     remittanceInformation: string
-    creditorAccountId: string | null
-    cancellationId: string | null
     _count: PaymentCountAggregateOutputType | null
     _min: PaymentMinAggregateOutputType | null
     _max: PaymentMaxAggregateOutputType | null
@@ -1324,7 +1326,6 @@ export namespace Prisma {
 
 
   export type PaymentSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
     paymentId?: boolean
     endToEndId?: boolean
     consentId?: boolean
@@ -1341,14 +1342,12 @@ export namespace Prisma {
     paymentCurrency?: boolean
     transactionIdentification?: boolean
     remittanceInformation?: boolean
-    creditorAccountId?: boolean
-    cancellationId?: boolean
     creditorAccount?: boolean | Payment$creditorAccountArgs<ExtArgs>
+    debtorAccount?: boolean | Payment$debtorAccountArgs<ExtArgs>
     cancellation?: boolean | Payment$cancellationArgs<ExtArgs>
   }, ExtArgs["result"]["payment"]>
 
   export type PaymentSelectScalar = {
-    id?: boolean
     paymentId?: boolean
     endToEndId?: boolean
     consentId?: boolean
@@ -1365,12 +1364,11 @@ export namespace Prisma {
     paymentCurrency?: boolean
     transactionIdentification?: boolean
     remittanceInformation?: boolean
-    creditorAccountId?: boolean
-    cancellationId?: boolean
   }
 
   export type PaymentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     creditorAccount?: boolean | Payment$creditorAccountArgs<ExtArgs>
+    debtorAccount?: boolean | Payment$debtorAccountArgs<ExtArgs>
     cancellation?: boolean | Payment$cancellationArgs<ExtArgs>
   }
 
@@ -1379,10 +1377,10 @@ export namespace Prisma {
     name: "Payment"
     objects: {
       creditorAccount: Prisma.$CreditorAccountPayload<ExtArgs> | null
+      debtorAccount: Prisma.$DebtorAccountPayload<ExtArgs> | null
       cancellation: Prisma.$CancellationPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
-      id: string
       paymentId: string
       endToEndId: string
       consentId: string
@@ -1399,8 +1397,6 @@ export namespace Prisma {
       paymentCurrency: string
       transactionIdentification: string
       remittanceInformation: string
-      creditorAccountId: string | null
-      cancellationId: string | null
     }, ExtArgs["result"]["payment"]>
     composites: {}
   }
@@ -1493,8 +1489,8 @@ export namespace Prisma {
      * // Get first 10 Payments
      * const payments = await prisma.payment.findMany({ take: 10 })
      * 
-     * // Only select the `id`
-     * const paymentWithIdOnly = await prisma.payment.findMany({ select: { id: true } })
+     * // Only select the `paymentId`
+     * const paymentWithPaymentIdOnly = await prisma.payment.findMany({ select: { paymentId: true } })
      * 
     **/
     findMany<T extends PaymentFindManyArgs<ExtArgs>>(
@@ -1795,6 +1791,8 @@ export namespace Prisma {
 
     creditorAccount<T extends Payment$creditorAccountArgs<ExtArgs> = {}>(args?: Subset<T, Payment$creditorAccountArgs<ExtArgs>>): Prisma__CreditorAccountClient<$Result.GetResult<Prisma.$CreditorAccountPayload<ExtArgs>, T, 'findUniqueOrThrow'> | null, null, ExtArgs>;
 
+    debtorAccount<T extends Payment$debtorAccountArgs<ExtArgs> = {}>(args?: Subset<T, Payment$debtorAccountArgs<ExtArgs>>): Prisma__DebtorAccountClient<$Result.GetResult<Prisma.$DebtorAccountPayload<ExtArgs>, T, 'findUniqueOrThrow'> | null, null, ExtArgs>;
+
     cancellation<T extends Payment$cancellationArgs<ExtArgs> = {}>(args?: Subset<T, Payment$cancellationArgs<ExtArgs>>): Prisma__CancellationClient<$Result.GetResult<Prisma.$CancellationPayload<ExtArgs>, T, 'findUniqueOrThrow'> | null, null, ExtArgs>;
 
     /**
@@ -1825,7 +1823,6 @@ export namespace Prisma {
    * Fields of the Payment model
    */ 
   interface PaymentFieldRefs {
-    readonly id: FieldRef<"Payment", 'String'>
     readonly paymentId: FieldRef<"Payment", 'String'>
     readonly endToEndId: FieldRef<"Payment", 'String'>
     readonly consentId: FieldRef<"Payment", 'String'>
@@ -1842,8 +1839,6 @@ export namespace Prisma {
     readonly paymentCurrency: FieldRef<"Payment", 'String'>
     readonly transactionIdentification: FieldRef<"Payment", 'String'>
     readonly remittanceInformation: FieldRef<"Payment", 'String'>
-    readonly creditorAccountId: FieldRef<"Payment", 'String'>
-    readonly cancellationId: FieldRef<"Payment", 'String'>
   }
     
 
@@ -2201,6 +2196,22 @@ export namespace Prisma {
 
 
   /**
+   * Payment.debtorAccount
+   */
+  export type Payment$debtorAccountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DebtorAccount
+     */
+    select?: DebtorAccountSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: DebtorAccountInclude<ExtArgs> | null
+    where?: DebtorAccountWhereInput
+  }
+
+
+  /**
    * Payment.cancellation
    */
   export type Payment$cancellationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2248,6 +2259,7 @@ export namespace Prisma {
     issuer: string | null
     number: string | null
     accountType: string | null
+    paymentId: string | null
   }
 
   export type CreditorAccountMaxAggregateOutputType = {
@@ -2256,6 +2268,7 @@ export namespace Prisma {
     issuer: string | null
     number: string | null
     accountType: string | null
+    paymentId: string | null
   }
 
   export type CreditorAccountCountAggregateOutputType = {
@@ -2264,6 +2277,7 @@ export namespace Prisma {
     issuer: number
     number: number
     accountType: number
+    paymentId: number
     _all: number
   }
 
@@ -2274,6 +2288,7 @@ export namespace Prisma {
     issuer?: true
     number?: true
     accountType?: true
+    paymentId?: true
   }
 
   export type CreditorAccountMaxAggregateInputType = {
@@ -2282,6 +2297,7 @@ export namespace Prisma {
     issuer?: true
     number?: true
     accountType?: true
+    paymentId?: true
   }
 
   export type CreditorAccountCountAggregateInputType = {
@@ -2290,6 +2306,7 @@ export namespace Prisma {
     issuer?: true
     number?: true
     accountType?: true
+    paymentId?: true
     _all?: true
   }
 
@@ -2371,6 +2388,7 @@ export namespace Prisma {
     issuer: string
     number: string
     accountType: string
+    paymentId: string
     _count: CreditorAccountCountAggregateOutputType | null
     _min: CreditorAccountMinAggregateOutputType | null
     _max: CreditorAccountMaxAggregateOutputType | null
@@ -2396,8 +2414,8 @@ export namespace Prisma {
     issuer?: boolean
     number?: boolean
     accountType?: boolean
-    Payment?: boolean | CreditorAccount$PaymentArgs<ExtArgs>
-    _count?: boolean | CreditorAccountCountOutputTypeDefaultArgs<ExtArgs>
+    paymentId?: boolean
+    Payment?: boolean | PaymentDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["creditorAccount"]>
 
   export type CreditorAccountSelectScalar = {
@@ -2406,18 +2424,18 @@ export namespace Prisma {
     issuer?: boolean
     number?: boolean
     accountType?: boolean
+    paymentId?: boolean
   }
 
   export type CreditorAccountInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Payment?: boolean | CreditorAccount$PaymentArgs<ExtArgs>
-    _count?: boolean | CreditorAccountCountOutputTypeDefaultArgs<ExtArgs>
+    Payment?: boolean | PaymentDefaultArgs<ExtArgs>
   }
 
 
   export type $CreditorAccountPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "CreditorAccount"
     objects: {
-      Payment: Prisma.$PaymentPayload<ExtArgs>[]
+      Payment: Prisma.$PaymentPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -2425,6 +2443,7 @@ export namespace Prisma {
       issuer: string
       number: string
       accountType: string
+      paymentId: string
     }, ExtArgs["result"]["creditorAccount"]>
     composites: {}
   }
@@ -2817,7 +2836,7 @@ export namespace Prisma {
   export interface Prisma__CreditorAccountClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
-    Payment<T extends CreditorAccount$PaymentArgs<ExtArgs> = {}>(args?: Subset<T, CreditorAccount$PaymentArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, 'findMany'> | Null>;
+    Payment<T extends PaymentDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PaymentDefaultArgs<ExtArgs>>): Prisma__PaymentClient<$Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -2852,6 +2871,7 @@ export namespace Prisma {
     readonly issuer: FieldRef<"CreditorAccount", 'String'>
     readonly number: FieldRef<"CreditorAccount", 'String'>
     readonly accountType: FieldRef<"CreditorAccount", 'String'>
+    readonly paymentId: FieldRef<"CreditorAccount", 'String'>
   }
     
 
@@ -3193,27 +3213,6 @@ export namespace Prisma {
 
 
   /**
-   * CreditorAccount.Payment
-   */
-  export type CreditorAccount$PaymentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Payment
-     */
-    select?: PaymentSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: PaymentInclude<ExtArgs> | null
-    where?: PaymentWhereInput
-    orderBy?: PaymentOrderByWithRelationInput | PaymentOrderByWithRelationInput[]
-    cursor?: PaymentWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: PaymentScalarFieldEnum | PaymentScalarFieldEnum[]
-  }
-
-
-  /**
    * CreditorAccount without action
    */
   export type CreditorAccountDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3225,6 +3224,991 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well.
      */
     include?: CreditorAccountInclude<ExtArgs> | null
+  }
+
+
+
+  /**
+   * Model DebtorAccount
+   */
+
+  export type AggregateDebtorAccount = {
+    _count: DebtorAccountCountAggregateOutputType | null
+    _min: DebtorAccountMinAggregateOutputType | null
+    _max: DebtorAccountMaxAggregateOutputType | null
+  }
+
+  export type DebtorAccountMinAggregateOutputType = {
+    id: string | null
+    ispb: string | null
+    issuer: string | null
+    number: string | null
+    accountType: string | null
+    paymentId: string | null
+  }
+
+  export type DebtorAccountMaxAggregateOutputType = {
+    id: string | null
+    ispb: string | null
+    issuer: string | null
+    number: string | null
+    accountType: string | null
+    paymentId: string | null
+  }
+
+  export type DebtorAccountCountAggregateOutputType = {
+    id: number
+    ispb: number
+    issuer: number
+    number: number
+    accountType: number
+    paymentId: number
+    _all: number
+  }
+
+
+  export type DebtorAccountMinAggregateInputType = {
+    id?: true
+    ispb?: true
+    issuer?: true
+    number?: true
+    accountType?: true
+    paymentId?: true
+  }
+
+  export type DebtorAccountMaxAggregateInputType = {
+    id?: true
+    ispb?: true
+    issuer?: true
+    number?: true
+    accountType?: true
+    paymentId?: true
+  }
+
+  export type DebtorAccountCountAggregateInputType = {
+    id?: true
+    ispb?: true
+    issuer?: true
+    number?: true
+    accountType?: true
+    paymentId?: true
+    _all?: true
+  }
+
+  export type DebtorAccountAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which DebtorAccount to aggregate.
+     */
+    where?: DebtorAccountWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DebtorAccounts to fetch.
+     */
+    orderBy?: DebtorAccountOrderByWithRelationInput | DebtorAccountOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: DebtorAccountWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DebtorAccounts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DebtorAccounts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned DebtorAccounts
+    **/
+    _count?: true | DebtorAccountCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: DebtorAccountMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: DebtorAccountMaxAggregateInputType
+  }
+
+  export type GetDebtorAccountAggregateType<T extends DebtorAccountAggregateArgs> = {
+        [P in keyof T & keyof AggregateDebtorAccount]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateDebtorAccount[P]>
+      : GetScalarType<T[P], AggregateDebtorAccount[P]>
+  }
+
+
+
+
+  export type DebtorAccountGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DebtorAccountWhereInput
+    orderBy?: DebtorAccountOrderByWithAggregationInput | DebtorAccountOrderByWithAggregationInput[]
+    by: DebtorAccountScalarFieldEnum[] | DebtorAccountScalarFieldEnum
+    having?: DebtorAccountScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: DebtorAccountCountAggregateInputType | true
+    _min?: DebtorAccountMinAggregateInputType
+    _max?: DebtorAccountMaxAggregateInputType
+  }
+
+  export type DebtorAccountGroupByOutputType = {
+    id: string
+    ispb: string
+    issuer: string
+    number: string
+    accountType: string
+    paymentId: string
+    _count: DebtorAccountCountAggregateOutputType | null
+    _min: DebtorAccountMinAggregateOutputType | null
+    _max: DebtorAccountMaxAggregateOutputType | null
+  }
+
+  type GetDebtorAccountGroupByPayload<T extends DebtorAccountGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<DebtorAccountGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof DebtorAccountGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], DebtorAccountGroupByOutputType[P]>
+            : GetScalarType<T[P], DebtorAccountGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type DebtorAccountSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    ispb?: boolean
+    issuer?: boolean
+    number?: boolean
+    accountType?: boolean
+    paymentId?: boolean
+    Payment?: boolean | PaymentDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["debtorAccount"]>
+
+  export type DebtorAccountSelectScalar = {
+    id?: boolean
+    ispb?: boolean
+    issuer?: boolean
+    number?: boolean
+    accountType?: boolean
+    paymentId?: boolean
+  }
+
+  export type DebtorAccountInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Payment?: boolean | PaymentDefaultArgs<ExtArgs>
+  }
+
+
+  export type $DebtorAccountPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "DebtorAccount"
+    objects: {
+      Payment: Prisma.$PaymentPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      ispb: string
+      issuer: string
+      number: string
+      accountType: string
+      paymentId: string
+    }, ExtArgs["result"]["debtorAccount"]>
+    composites: {}
+  }
+
+
+  type DebtorAccountGetPayload<S extends boolean | null | undefined | DebtorAccountDefaultArgs> = $Result.GetResult<Prisma.$DebtorAccountPayload, S>
+
+  type DebtorAccountCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<DebtorAccountFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: DebtorAccountCountAggregateInputType | true
+    }
+
+  export interface DebtorAccountDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['DebtorAccount'], meta: { name: 'DebtorAccount' } }
+    /**
+     * Find zero or one DebtorAccount that matches the filter.
+     * @param {DebtorAccountFindUniqueArgs} args - Arguments to find a DebtorAccount
+     * @example
+     * // Get one DebtorAccount
+     * const debtorAccount = await prisma.debtorAccount.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends DebtorAccountFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, DebtorAccountFindUniqueArgs<ExtArgs>>
+    ): Prisma__DebtorAccountClient<$Result.GetResult<Prisma.$DebtorAccountPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one DebtorAccount that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {DebtorAccountFindUniqueOrThrowArgs} args - Arguments to find a DebtorAccount
+     * @example
+     * // Get one DebtorAccount
+     * const debtorAccount = await prisma.debtorAccount.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends DebtorAccountFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, DebtorAccountFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__DebtorAccountClient<$Result.GetResult<Prisma.$DebtorAccountPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first DebtorAccount that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DebtorAccountFindFirstArgs} args - Arguments to find a DebtorAccount
+     * @example
+     * // Get one DebtorAccount
+     * const debtorAccount = await prisma.debtorAccount.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends DebtorAccountFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, DebtorAccountFindFirstArgs<ExtArgs>>
+    ): Prisma__DebtorAccountClient<$Result.GetResult<Prisma.$DebtorAccountPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first DebtorAccount that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DebtorAccountFindFirstOrThrowArgs} args - Arguments to find a DebtorAccount
+     * @example
+     * // Get one DebtorAccount
+     * const debtorAccount = await prisma.debtorAccount.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends DebtorAccountFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, DebtorAccountFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__DebtorAccountClient<$Result.GetResult<Prisma.$DebtorAccountPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more DebtorAccounts that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DebtorAccountFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all DebtorAccounts
+     * const debtorAccounts = await prisma.debtorAccount.findMany()
+     * 
+     * // Get first 10 DebtorAccounts
+     * const debtorAccounts = await prisma.debtorAccount.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const debtorAccountWithIdOnly = await prisma.debtorAccount.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends DebtorAccountFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, DebtorAccountFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DebtorAccountPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a DebtorAccount.
+     * @param {DebtorAccountCreateArgs} args - Arguments to create a DebtorAccount.
+     * @example
+     * // Create one DebtorAccount
+     * const DebtorAccount = await prisma.debtorAccount.create({
+     *   data: {
+     *     // ... data to create a DebtorAccount
+     *   }
+     * })
+     * 
+    **/
+    create<T extends DebtorAccountCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, DebtorAccountCreateArgs<ExtArgs>>
+    ): Prisma__DebtorAccountClient<$Result.GetResult<Prisma.$DebtorAccountPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many DebtorAccounts.
+     *     @param {DebtorAccountCreateManyArgs} args - Arguments to create many DebtorAccounts.
+     *     @example
+     *     // Create many DebtorAccounts
+     *     const debtorAccount = await prisma.debtorAccount.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends DebtorAccountCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, DebtorAccountCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a DebtorAccount.
+     * @param {DebtorAccountDeleteArgs} args - Arguments to delete one DebtorAccount.
+     * @example
+     * // Delete one DebtorAccount
+     * const DebtorAccount = await prisma.debtorAccount.delete({
+     *   where: {
+     *     // ... filter to delete one DebtorAccount
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends DebtorAccountDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, DebtorAccountDeleteArgs<ExtArgs>>
+    ): Prisma__DebtorAccountClient<$Result.GetResult<Prisma.$DebtorAccountPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one DebtorAccount.
+     * @param {DebtorAccountUpdateArgs} args - Arguments to update one DebtorAccount.
+     * @example
+     * // Update one DebtorAccount
+     * const debtorAccount = await prisma.debtorAccount.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends DebtorAccountUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, DebtorAccountUpdateArgs<ExtArgs>>
+    ): Prisma__DebtorAccountClient<$Result.GetResult<Prisma.$DebtorAccountPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more DebtorAccounts.
+     * @param {DebtorAccountDeleteManyArgs} args - Arguments to filter DebtorAccounts to delete.
+     * @example
+     * // Delete a few DebtorAccounts
+     * const { count } = await prisma.debtorAccount.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends DebtorAccountDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, DebtorAccountDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more DebtorAccounts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DebtorAccountUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many DebtorAccounts
+     * const debtorAccount = await prisma.debtorAccount.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends DebtorAccountUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, DebtorAccountUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one DebtorAccount.
+     * @param {DebtorAccountUpsertArgs} args - Arguments to update or create a DebtorAccount.
+     * @example
+     * // Update or create a DebtorAccount
+     * const debtorAccount = await prisma.debtorAccount.upsert({
+     *   create: {
+     *     // ... data to create a DebtorAccount
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the DebtorAccount we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends DebtorAccountUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, DebtorAccountUpsertArgs<ExtArgs>>
+    ): Prisma__DebtorAccountClient<$Result.GetResult<Prisma.$DebtorAccountPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Find zero or more DebtorAccounts that matches the filter.
+     * @param {DebtorAccountFindRawArgs} args - Select which filters you would like to apply.
+     * @example
+     * const debtorAccount = await prisma.debtorAccount.findRaw({
+     *   filter: { age: { $gt: 25 } } 
+     * })
+    **/
+    findRaw(
+      args?: DebtorAccountFindRawArgs
+    ): Prisma.PrismaPromise<JsonObject>
+
+    /**
+     * Perform aggregation operations on a DebtorAccount.
+     * @param {DebtorAccountAggregateRawArgs} args - Select which aggregations you would like to apply.
+     * @example
+     * const debtorAccount = await prisma.debtorAccount.aggregateRaw({
+     *   pipeline: [
+     *     { $match: { status: "registered" } },
+     *     { $group: { _id: "$country", total: { $sum: 1 } } }
+     *   ]
+     * })
+    **/
+    aggregateRaw(
+      args?: DebtorAccountAggregateRawArgs
+    ): Prisma.PrismaPromise<JsonObject>
+
+    /**
+     * Count the number of DebtorAccounts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DebtorAccountCountArgs} args - Arguments to filter DebtorAccounts to count.
+     * @example
+     * // Count the number of DebtorAccounts
+     * const count = await prisma.debtorAccount.count({
+     *   where: {
+     *     // ... the filter for the DebtorAccounts we want to count
+     *   }
+     * })
+    **/
+    count<T extends DebtorAccountCountArgs>(
+      args?: Subset<T, DebtorAccountCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], DebtorAccountCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a DebtorAccount.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DebtorAccountAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends DebtorAccountAggregateArgs>(args: Subset<T, DebtorAccountAggregateArgs>): Prisma.PrismaPromise<GetDebtorAccountAggregateType<T>>
+
+    /**
+     * Group by DebtorAccount.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DebtorAccountGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends DebtorAccountGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: DebtorAccountGroupByArgs['orderBy'] }
+        : { orderBy?: DebtorAccountGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, DebtorAccountGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetDebtorAccountGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the DebtorAccount model
+   */
+  readonly fields: DebtorAccountFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for DebtorAccount.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__DebtorAccountClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+    Payment<T extends PaymentDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PaymentDefaultArgs<ExtArgs>>): Prisma__PaymentClient<$Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the DebtorAccount model
+   */ 
+  interface DebtorAccountFieldRefs {
+    readonly id: FieldRef<"DebtorAccount", 'String'>
+    readonly ispb: FieldRef<"DebtorAccount", 'String'>
+    readonly issuer: FieldRef<"DebtorAccount", 'String'>
+    readonly number: FieldRef<"DebtorAccount", 'String'>
+    readonly accountType: FieldRef<"DebtorAccount", 'String'>
+    readonly paymentId: FieldRef<"DebtorAccount", 'String'>
+  }
+    
+
+  // Custom InputTypes
+
+  /**
+   * DebtorAccount findUnique
+   */
+  export type DebtorAccountFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DebtorAccount
+     */
+    select?: DebtorAccountSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: DebtorAccountInclude<ExtArgs> | null
+    /**
+     * Filter, which DebtorAccount to fetch.
+     */
+    where: DebtorAccountWhereUniqueInput
+  }
+
+
+  /**
+   * DebtorAccount findUniqueOrThrow
+   */
+  export type DebtorAccountFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DebtorAccount
+     */
+    select?: DebtorAccountSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: DebtorAccountInclude<ExtArgs> | null
+    /**
+     * Filter, which DebtorAccount to fetch.
+     */
+    where: DebtorAccountWhereUniqueInput
+  }
+
+
+  /**
+   * DebtorAccount findFirst
+   */
+  export type DebtorAccountFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DebtorAccount
+     */
+    select?: DebtorAccountSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: DebtorAccountInclude<ExtArgs> | null
+    /**
+     * Filter, which DebtorAccount to fetch.
+     */
+    where?: DebtorAccountWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DebtorAccounts to fetch.
+     */
+    orderBy?: DebtorAccountOrderByWithRelationInput | DebtorAccountOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for DebtorAccounts.
+     */
+    cursor?: DebtorAccountWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DebtorAccounts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DebtorAccounts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of DebtorAccounts.
+     */
+    distinct?: DebtorAccountScalarFieldEnum | DebtorAccountScalarFieldEnum[]
+  }
+
+
+  /**
+   * DebtorAccount findFirstOrThrow
+   */
+  export type DebtorAccountFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DebtorAccount
+     */
+    select?: DebtorAccountSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: DebtorAccountInclude<ExtArgs> | null
+    /**
+     * Filter, which DebtorAccount to fetch.
+     */
+    where?: DebtorAccountWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DebtorAccounts to fetch.
+     */
+    orderBy?: DebtorAccountOrderByWithRelationInput | DebtorAccountOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for DebtorAccounts.
+     */
+    cursor?: DebtorAccountWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DebtorAccounts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DebtorAccounts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of DebtorAccounts.
+     */
+    distinct?: DebtorAccountScalarFieldEnum | DebtorAccountScalarFieldEnum[]
+  }
+
+
+  /**
+   * DebtorAccount findMany
+   */
+  export type DebtorAccountFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DebtorAccount
+     */
+    select?: DebtorAccountSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: DebtorAccountInclude<ExtArgs> | null
+    /**
+     * Filter, which DebtorAccounts to fetch.
+     */
+    where?: DebtorAccountWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DebtorAccounts to fetch.
+     */
+    orderBy?: DebtorAccountOrderByWithRelationInput | DebtorAccountOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing DebtorAccounts.
+     */
+    cursor?: DebtorAccountWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DebtorAccounts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DebtorAccounts.
+     */
+    skip?: number
+    distinct?: DebtorAccountScalarFieldEnum | DebtorAccountScalarFieldEnum[]
+  }
+
+
+  /**
+   * DebtorAccount create
+   */
+  export type DebtorAccountCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DebtorAccount
+     */
+    select?: DebtorAccountSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: DebtorAccountInclude<ExtArgs> | null
+    /**
+     * The data needed to create a DebtorAccount.
+     */
+    data: XOR<DebtorAccountCreateInput, DebtorAccountUncheckedCreateInput>
+  }
+
+
+  /**
+   * DebtorAccount createMany
+   */
+  export type DebtorAccountCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many DebtorAccounts.
+     */
+    data: DebtorAccountCreateManyInput | DebtorAccountCreateManyInput[]
+  }
+
+
+  /**
+   * DebtorAccount update
+   */
+  export type DebtorAccountUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DebtorAccount
+     */
+    select?: DebtorAccountSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: DebtorAccountInclude<ExtArgs> | null
+    /**
+     * The data needed to update a DebtorAccount.
+     */
+    data: XOR<DebtorAccountUpdateInput, DebtorAccountUncheckedUpdateInput>
+    /**
+     * Choose, which DebtorAccount to update.
+     */
+    where: DebtorAccountWhereUniqueInput
+  }
+
+
+  /**
+   * DebtorAccount updateMany
+   */
+  export type DebtorAccountUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update DebtorAccounts.
+     */
+    data: XOR<DebtorAccountUpdateManyMutationInput, DebtorAccountUncheckedUpdateManyInput>
+    /**
+     * Filter which DebtorAccounts to update
+     */
+    where?: DebtorAccountWhereInput
+  }
+
+
+  /**
+   * DebtorAccount upsert
+   */
+  export type DebtorAccountUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DebtorAccount
+     */
+    select?: DebtorAccountSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: DebtorAccountInclude<ExtArgs> | null
+    /**
+     * The filter to search for the DebtorAccount to update in case it exists.
+     */
+    where: DebtorAccountWhereUniqueInput
+    /**
+     * In case the DebtorAccount found by the `where` argument doesn't exist, create a new DebtorAccount with this data.
+     */
+    create: XOR<DebtorAccountCreateInput, DebtorAccountUncheckedCreateInput>
+    /**
+     * In case the DebtorAccount was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<DebtorAccountUpdateInput, DebtorAccountUncheckedUpdateInput>
+  }
+
+
+  /**
+   * DebtorAccount delete
+   */
+  export type DebtorAccountDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DebtorAccount
+     */
+    select?: DebtorAccountSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: DebtorAccountInclude<ExtArgs> | null
+    /**
+     * Filter which DebtorAccount to delete.
+     */
+    where: DebtorAccountWhereUniqueInput
+  }
+
+
+  /**
+   * DebtorAccount deleteMany
+   */
+  export type DebtorAccountDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which DebtorAccounts to delete
+     */
+    where?: DebtorAccountWhereInput
+  }
+
+
+  /**
+   * DebtorAccount findRaw
+   */
+  export type DebtorAccountFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
+     */
+    filter?: InputJsonValue
+    /**
+     * Additional options to pass to the `find` command ${@link https://docs.mongodb.com/manual/reference/command/find/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+
+  /**
+   * DebtorAccount aggregateRaw
+   */
+  export type DebtorAccountAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
+     */
+    pipeline?: InputJsonValue[]
+    /**
+     * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+
+  /**
+   * DebtorAccount without action
+   */
+  export type DebtorAccountDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DebtorAccount
+     */
+    select?: DebtorAccountSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: DebtorAccountInclude<ExtArgs> | null
   }
 
 
@@ -3246,6 +4230,7 @@ export namespace Prisma {
     cancelledAt: Date | null
     cancelledByIdentification: string | null
     cancelledByRel: string | null
+    paymentId: string | null
   }
 
   export type CancellationMaxAggregateOutputType = {
@@ -3255,6 +4240,7 @@ export namespace Prisma {
     cancelledAt: Date | null
     cancelledByIdentification: string | null
     cancelledByRel: string | null
+    paymentId: string | null
   }
 
   export type CancellationCountAggregateOutputType = {
@@ -3264,6 +4250,7 @@ export namespace Prisma {
     cancelledAt: number
     cancelledByIdentification: number
     cancelledByRel: number
+    paymentId: number
     _all: number
   }
 
@@ -3275,6 +4262,7 @@ export namespace Prisma {
     cancelledAt?: true
     cancelledByIdentification?: true
     cancelledByRel?: true
+    paymentId?: true
   }
 
   export type CancellationMaxAggregateInputType = {
@@ -3284,6 +4272,7 @@ export namespace Prisma {
     cancelledAt?: true
     cancelledByIdentification?: true
     cancelledByRel?: true
+    paymentId?: true
   }
 
   export type CancellationCountAggregateInputType = {
@@ -3293,6 +4282,7 @@ export namespace Prisma {
     cancelledAt?: true
     cancelledByIdentification?: true
     cancelledByRel?: true
+    paymentId?: true
     _all?: true
   }
 
@@ -3375,6 +4365,7 @@ export namespace Prisma {
     cancelledAt: Date
     cancelledByIdentification: string
     cancelledByRel: string
+    paymentId: string
     _count: CancellationCountAggregateOutputType | null
     _min: CancellationMinAggregateOutputType | null
     _max: CancellationMaxAggregateOutputType | null
@@ -3401,8 +4392,8 @@ export namespace Prisma {
     cancelledAt?: boolean
     cancelledByIdentification?: boolean
     cancelledByRel?: boolean
-    Payment?: boolean | Cancellation$PaymentArgs<ExtArgs>
-    _count?: boolean | CancellationCountOutputTypeDefaultArgs<ExtArgs>
+    paymentId?: boolean
+    Payment?: boolean | PaymentDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["cancellation"]>
 
   export type CancellationSelectScalar = {
@@ -3412,18 +4403,18 @@ export namespace Prisma {
     cancelledAt?: boolean
     cancelledByIdentification?: boolean
     cancelledByRel?: boolean
+    paymentId?: boolean
   }
 
   export type CancellationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Payment?: boolean | Cancellation$PaymentArgs<ExtArgs>
-    _count?: boolean | CancellationCountOutputTypeDefaultArgs<ExtArgs>
+    Payment?: boolean | PaymentDefaultArgs<ExtArgs>
   }
 
 
   export type $CancellationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Cancellation"
     objects: {
-      Payment: Prisma.$PaymentPayload<ExtArgs>[]
+      Payment: Prisma.$PaymentPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -3432,6 +4423,7 @@ export namespace Prisma {
       cancelledAt: Date
       cancelledByIdentification: string
       cancelledByRel: string
+      paymentId: string
     }, ExtArgs["result"]["cancellation"]>
     composites: {}
   }
@@ -3824,7 +4816,7 @@ export namespace Prisma {
   export interface Prisma__CancellationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
-    Payment<T extends Cancellation$PaymentArgs<ExtArgs> = {}>(args?: Subset<T, Cancellation$PaymentArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, 'findMany'> | Null>;
+    Payment<T extends PaymentDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PaymentDefaultArgs<ExtArgs>>): Prisma__PaymentClient<$Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -3860,6 +4852,7 @@ export namespace Prisma {
     readonly cancelledAt: FieldRef<"Cancellation", 'DateTime'>
     readonly cancelledByIdentification: FieldRef<"Cancellation", 'String'>
     readonly cancelledByRel: FieldRef<"Cancellation", 'String'>
+    readonly paymentId: FieldRef<"Cancellation", 'String'>
   }
     
 
@@ -4201,27 +5194,6 @@ export namespace Prisma {
 
 
   /**
-   * Cancellation.Payment
-   */
-  export type Cancellation$PaymentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Payment
-     */
-    select?: PaymentSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: PaymentInclude<ExtArgs> | null
-    where?: PaymentWhereInput
-    orderBy?: PaymentOrderByWithRelationInput | PaymentOrderByWithRelationInput[]
-    cursor?: PaymentWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: PaymentScalarFieldEnum | PaymentScalarFieldEnum[]
-  }
-
-
-  /**
    * Cancellation without action
    */
   export type CancellationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4242,7 +5214,6 @@ export namespace Prisma {
    */
 
   export const PaymentScalarFieldEnum: {
-    id: 'id',
     paymentId: 'paymentId',
     endToEndId: 'endToEndId',
     consentId: 'consentId',
@@ -4258,9 +5229,7 @@ export namespace Prisma {
     paymentAmount: 'paymentAmount',
     paymentCurrency: 'paymentCurrency',
     transactionIdentification: 'transactionIdentification',
-    remittanceInformation: 'remittanceInformation',
-    creditorAccountId: 'creditorAccountId',
-    cancellationId: 'cancellationId'
+    remittanceInformation: 'remittanceInformation'
   };
 
   export type PaymentScalarFieldEnum = (typeof PaymentScalarFieldEnum)[keyof typeof PaymentScalarFieldEnum]
@@ -4271,10 +5240,23 @@ export namespace Prisma {
     ispb: 'ispb',
     issuer: 'issuer',
     number: 'number',
-    accountType: 'accountType'
+    accountType: 'accountType',
+    paymentId: 'paymentId'
   };
 
   export type CreditorAccountScalarFieldEnum = (typeof CreditorAccountScalarFieldEnum)[keyof typeof CreditorAccountScalarFieldEnum]
+
+
+  export const DebtorAccountScalarFieldEnum: {
+    id: 'id',
+    ispb: 'ispb',
+    issuer: 'issuer',
+    number: 'number',
+    accountType: 'accountType',
+    paymentId: 'paymentId'
+  };
+
+  export type DebtorAccountScalarFieldEnum = (typeof DebtorAccountScalarFieldEnum)[keyof typeof DebtorAccountScalarFieldEnum]
 
 
   export const CancellationScalarFieldEnum: {
@@ -4283,7 +5265,8 @@ export namespace Prisma {
     cancelledFrom: 'cancelledFrom',
     cancelledAt: 'cancelledAt',
     cancelledByIdentification: 'cancelledByIdentification',
-    cancelledByRel: 'cancelledByRel'
+    cancelledByRel: 'cancelledByRel',
+    paymentId: 'paymentId'
   };
 
   export type CancellationScalarFieldEnum = (typeof CancellationScalarFieldEnum)[keyof typeof CancellationScalarFieldEnum]
@@ -4359,7 +5342,6 @@ export namespace Prisma {
     AND?: PaymentWhereInput | PaymentWhereInput[]
     OR?: PaymentWhereInput[]
     NOT?: PaymentWhereInput | PaymentWhereInput[]
-    id?: StringFilter<"Payment"> | string
     paymentId?: StringFilter<"Payment"> | string
     endToEndId?: StringFilter<"Payment"> | string
     consentId?: StringFilter<"Payment"> | string
@@ -4376,14 +5358,12 @@ export namespace Prisma {
     paymentCurrency?: StringFilter<"Payment"> | string
     transactionIdentification?: StringFilter<"Payment"> | string
     remittanceInformation?: StringFilter<"Payment"> | string
-    creditorAccountId?: StringNullableFilter<"Payment"> | string | null
-    cancellationId?: StringNullableFilter<"Payment"> | string | null
     creditorAccount?: XOR<CreditorAccountNullableRelationFilter, CreditorAccountWhereInput> | null
+    debtorAccount?: XOR<DebtorAccountNullableRelationFilter, DebtorAccountWhereInput> | null
     cancellation?: XOR<CancellationNullableRelationFilter, CancellationWhereInput> | null
   }
 
   export type PaymentOrderByWithRelationInput = {
-    id?: SortOrder
     paymentId?: SortOrder
     endToEndId?: SortOrder
     consentId?: SortOrder
@@ -4400,18 +5380,16 @@ export namespace Prisma {
     paymentCurrency?: SortOrder
     transactionIdentification?: SortOrder
     remittanceInformation?: SortOrder
-    creditorAccountId?: SortOrder
-    cancellationId?: SortOrder
     creditorAccount?: CreditorAccountOrderByWithRelationInput
+    debtorAccount?: DebtorAccountOrderByWithRelationInput
     cancellation?: CancellationOrderByWithRelationInput
   }
 
   export type PaymentWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
+    paymentId?: string
     AND?: PaymentWhereInput | PaymentWhereInput[]
     OR?: PaymentWhereInput[]
     NOT?: PaymentWhereInput | PaymentWhereInput[]
-    paymentId?: StringFilter<"Payment"> | string
     endToEndId?: StringFilter<"Payment"> | string
     consentId?: StringFilter<"Payment"> | string
     creationDateTime?: DateTimeFilter<"Payment"> | Date | string
@@ -4427,14 +5405,12 @@ export namespace Prisma {
     paymentCurrency?: StringFilter<"Payment"> | string
     transactionIdentification?: StringFilter<"Payment"> | string
     remittanceInformation?: StringFilter<"Payment"> | string
-    creditorAccountId?: StringNullableFilter<"Payment"> | string | null
-    cancellationId?: StringNullableFilter<"Payment"> | string | null
     creditorAccount?: XOR<CreditorAccountNullableRelationFilter, CreditorAccountWhereInput> | null
+    debtorAccount?: XOR<DebtorAccountNullableRelationFilter, DebtorAccountWhereInput> | null
     cancellation?: XOR<CancellationNullableRelationFilter, CancellationWhereInput> | null
-  }, "id">
+  }, "paymentId">
 
   export type PaymentOrderByWithAggregationInput = {
-    id?: SortOrder
     paymentId?: SortOrder
     endToEndId?: SortOrder
     consentId?: SortOrder
@@ -4451,8 +5427,6 @@ export namespace Prisma {
     paymentCurrency?: SortOrder
     transactionIdentification?: SortOrder
     remittanceInformation?: SortOrder
-    creditorAccountId?: SortOrder
-    cancellationId?: SortOrder
     _count?: PaymentCountOrderByAggregateInput
     _max?: PaymentMaxOrderByAggregateInput
     _min?: PaymentMinOrderByAggregateInput
@@ -4462,7 +5436,6 @@ export namespace Prisma {
     AND?: PaymentScalarWhereWithAggregatesInput | PaymentScalarWhereWithAggregatesInput[]
     OR?: PaymentScalarWhereWithAggregatesInput[]
     NOT?: PaymentScalarWhereWithAggregatesInput | PaymentScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"Payment"> | string
     paymentId?: StringWithAggregatesFilter<"Payment"> | string
     endToEndId?: StringWithAggregatesFilter<"Payment"> | string
     consentId?: StringWithAggregatesFilter<"Payment"> | string
@@ -4479,8 +5452,6 @@ export namespace Prisma {
     paymentCurrency?: StringWithAggregatesFilter<"Payment"> | string
     transactionIdentification?: StringWithAggregatesFilter<"Payment"> | string
     remittanceInformation?: StringWithAggregatesFilter<"Payment"> | string
-    creditorAccountId?: StringNullableWithAggregatesFilter<"Payment"> | string | null
-    cancellationId?: StringNullableWithAggregatesFilter<"Payment"> | string | null
   }
 
   export type CreditorAccountWhereInput = {
@@ -4492,7 +5463,8 @@ export namespace Prisma {
     issuer?: StringFilter<"CreditorAccount"> | string
     number?: StringFilter<"CreditorAccount"> | string
     accountType?: StringFilter<"CreditorAccount"> | string
-    Payment?: PaymentListRelationFilter
+    paymentId?: StringFilter<"CreditorAccount"> | string
+    Payment?: XOR<PaymentRelationFilter, PaymentWhereInput>
   }
 
   export type CreditorAccountOrderByWithRelationInput = {
@@ -4501,11 +5473,13 @@ export namespace Prisma {
     issuer?: SortOrder
     number?: SortOrder
     accountType?: SortOrder
-    Payment?: PaymentOrderByRelationAggregateInput
+    paymentId?: SortOrder
+    Payment?: PaymentOrderByWithRelationInput
   }
 
   export type CreditorAccountWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    paymentId?: string
     AND?: CreditorAccountWhereInput | CreditorAccountWhereInput[]
     OR?: CreditorAccountWhereInput[]
     NOT?: CreditorAccountWhereInput | CreditorAccountWhereInput[]
@@ -4513,8 +5487,8 @@ export namespace Prisma {
     issuer?: StringFilter<"CreditorAccount"> | string
     number?: StringFilter<"CreditorAccount"> | string
     accountType?: StringFilter<"CreditorAccount"> | string
-    Payment?: PaymentListRelationFilter
-  }, "id">
+    Payment?: XOR<PaymentRelationFilter, PaymentWhereInput>
+  }, "id" | "paymentId">
 
   export type CreditorAccountOrderByWithAggregationInput = {
     id?: SortOrder
@@ -4522,6 +5496,7 @@ export namespace Prisma {
     issuer?: SortOrder
     number?: SortOrder
     accountType?: SortOrder
+    paymentId?: SortOrder
     _count?: CreditorAccountCountOrderByAggregateInput
     _max?: CreditorAccountMaxOrderByAggregateInput
     _min?: CreditorAccountMinOrderByAggregateInput
@@ -4536,6 +5511,67 @@ export namespace Prisma {
     issuer?: StringWithAggregatesFilter<"CreditorAccount"> | string
     number?: StringWithAggregatesFilter<"CreditorAccount"> | string
     accountType?: StringWithAggregatesFilter<"CreditorAccount"> | string
+    paymentId?: StringWithAggregatesFilter<"CreditorAccount"> | string
+  }
+
+  export type DebtorAccountWhereInput = {
+    AND?: DebtorAccountWhereInput | DebtorAccountWhereInput[]
+    OR?: DebtorAccountWhereInput[]
+    NOT?: DebtorAccountWhereInput | DebtorAccountWhereInput[]
+    id?: StringFilter<"DebtorAccount"> | string
+    ispb?: StringFilter<"DebtorAccount"> | string
+    issuer?: StringFilter<"DebtorAccount"> | string
+    number?: StringFilter<"DebtorAccount"> | string
+    accountType?: StringFilter<"DebtorAccount"> | string
+    paymentId?: StringFilter<"DebtorAccount"> | string
+    Payment?: XOR<PaymentRelationFilter, PaymentWhereInput>
+  }
+
+  export type DebtorAccountOrderByWithRelationInput = {
+    id?: SortOrder
+    ispb?: SortOrder
+    issuer?: SortOrder
+    number?: SortOrder
+    accountType?: SortOrder
+    paymentId?: SortOrder
+    Payment?: PaymentOrderByWithRelationInput
+  }
+
+  export type DebtorAccountWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    paymentId?: string
+    AND?: DebtorAccountWhereInput | DebtorAccountWhereInput[]
+    OR?: DebtorAccountWhereInput[]
+    NOT?: DebtorAccountWhereInput | DebtorAccountWhereInput[]
+    ispb?: StringFilter<"DebtorAccount"> | string
+    issuer?: StringFilter<"DebtorAccount"> | string
+    number?: StringFilter<"DebtorAccount"> | string
+    accountType?: StringFilter<"DebtorAccount"> | string
+    Payment?: XOR<PaymentRelationFilter, PaymentWhereInput>
+  }, "id" | "paymentId">
+
+  export type DebtorAccountOrderByWithAggregationInput = {
+    id?: SortOrder
+    ispb?: SortOrder
+    issuer?: SortOrder
+    number?: SortOrder
+    accountType?: SortOrder
+    paymentId?: SortOrder
+    _count?: DebtorAccountCountOrderByAggregateInput
+    _max?: DebtorAccountMaxOrderByAggregateInput
+    _min?: DebtorAccountMinOrderByAggregateInput
+  }
+
+  export type DebtorAccountScalarWhereWithAggregatesInput = {
+    AND?: DebtorAccountScalarWhereWithAggregatesInput | DebtorAccountScalarWhereWithAggregatesInput[]
+    OR?: DebtorAccountScalarWhereWithAggregatesInput[]
+    NOT?: DebtorAccountScalarWhereWithAggregatesInput | DebtorAccountScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"DebtorAccount"> | string
+    ispb?: StringWithAggregatesFilter<"DebtorAccount"> | string
+    issuer?: StringWithAggregatesFilter<"DebtorAccount"> | string
+    number?: StringWithAggregatesFilter<"DebtorAccount"> | string
+    accountType?: StringWithAggregatesFilter<"DebtorAccount"> | string
+    paymentId?: StringWithAggregatesFilter<"DebtorAccount"> | string
   }
 
   export type CancellationWhereInput = {
@@ -4548,7 +5584,8 @@ export namespace Prisma {
     cancelledAt?: DateTimeFilter<"Cancellation"> | Date | string
     cancelledByIdentification?: StringFilter<"Cancellation"> | string
     cancelledByRel?: StringFilter<"Cancellation"> | string
-    Payment?: PaymentListRelationFilter
+    paymentId?: StringFilter<"Cancellation"> | string
+    Payment?: XOR<PaymentRelationFilter, PaymentWhereInput>
   }
 
   export type CancellationOrderByWithRelationInput = {
@@ -4558,11 +5595,13 @@ export namespace Prisma {
     cancelledAt?: SortOrder
     cancelledByIdentification?: SortOrder
     cancelledByRel?: SortOrder
-    Payment?: PaymentOrderByRelationAggregateInput
+    paymentId?: SortOrder
+    Payment?: PaymentOrderByWithRelationInput
   }
 
   export type CancellationWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    paymentId?: string
     AND?: CancellationWhereInput | CancellationWhereInput[]
     OR?: CancellationWhereInput[]
     NOT?: CancellationWhereInput | CancellationWhereInput[]
@@ -4571,8 +5610,8 @@ export namespace Prisma {
     cancelledAt?: DateTimeFilter<"Cancellation"> | Date | string
     cancelledByIdentification?: StringFilter<"Cancellation"> | string
     cancelledByRel?: StringFilter<"Cancellation"> | string
-    Payment?: PaymentListRelationFilter
-  }, "id">
+    Payment?: XOR<PaymentRelationFilter, PaymentWhereInput>
+  }, "id" | "paymentId">
 
   export type CancellationOrderByWithAggregationInput = {
     id?: SortOrder
@@ -4581,6 +5620,7 @@ export namespace Prisma {
     cancelledAt?: SortOrder
     cancelledByIdentification?: SortOrder
     cancelledByRel?: SortOrder
+    paymentId?: SortOrder
     _count?: CancellationCountOrderByAggregateInput
     _max?: CancellationMaxOrderByAggregateInput
     _min?: CancellationMinOrderByAggregateInput
@@ -4596,15 +5636,15 @@ export namespace Prisma {
     cancelledAt?: DateTimeWithAggregatesFilter<"Cancellation"> | Date | string
     cancelledByIdentification?: StringWithAggregatesFilter<"Cancellation"> | string
     cancelledByRel?: StringWithAggregatesFilter<"Cancellation"> | string
+    paymentId?: StringWithAggregatesFilter<"Cancellation"> | string
   }
 
   export type PaymentCreateInput = {
-    id?: string
-    paymentId: string
+    paymentId?: string
     endToEndId: string
     consentId: string
-    creationDateTime: Date | string
-    statusUpdateDateTime: Date | string
+    creationDateTime?: Date | string
+    statusUpdateDateTime?: Date | string
     proxy: string
     ibgeTownCode: string
     status: string
@@ -4617,16 +5657,16 @@ export namespace Prisma {
     transactionIdentification: string
     remittanceInformation: string
     creditorAccount?: CreditorAccountCreateNestedOneWithoutPaymentInput
+    debtorAccount?: DebtorAccountCreateNestedOneWithoutPaymentInput
     cancellation?: CancellationCreateNestedOneWithoutPaymentInput
   }
 
   export type PaymentUncheckedCreateInput = {
-    id?: string
-    paymentId: string
+    paymentId?: string
     endToEndId: string
     consentId: string
-    creationDateTime: Date | string
-    statusUpdateDateTime: Date | string
+    creationDateTime?: Date | string
+    statusUpdateDateTime?: Date | string
     proxy: string
     ibgeTownCode: string
     status: string
@@ -4638,12 +5678,12 @@ export namespace Prisma {
     paymentCurrency: string
     transactionIdentification: string
     remittanceInformation: string
-    creditorAccountId?: string | null
-    cancellationId?: string | null
+    creditorAccount?: CreditorAccountUncheckedCreateNestedOneWithoutPaymentInput
+    debtorAccount?: DebtorAccountUncheckedCreateNestedOneWithoutPaymentInput
+    cancellation?: CancellationUncheckedCreateNestedOneWithoutPaymentInput
   }
 
   export type PaymentUpdateInput = {
-    paymentId?: StringFieldUpdateOperationsInput | string
     endToEndId?: StringFieldUpdateOperationsInput | string
     consentId?: StringFieldUpdateOperationsInput | string
     creationDateTime?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -4660,11 +5700,11 @@ export namespace Prisma {
     transactionIdentification?: StringFieldUpdateOperationsInput | string
     remittanceInformation?: StringFieldUpdateOperationsInput | string
     creditorAccount?: CreditorAccountUpdateOneWithoutPaymentNestedInput
+    debtorAccount?: DebtorAccountUpdateOneWithoutPaymentNestedInput
     cancellation?: CancellationUpdateOneWithoutPaymentNestedInput
   }
 
   export type PaymentUncheckedUpdateInput = {
-    paymentId?: StringFieldUpdateOperationsInput | string
     endToEndId?: StringFieldUpdateOperationsInput | string
     consentId?: StringFieldUpdateOperationsInput | string
     creationDateTime?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -4680,17 +5720,17 @@ export namespace Prisma {
     paymentCurrency?: StringFieldUpdateOperationsInput | string
     transactionIdentification?: StringFieldUpdateOperationsInput | string
     remittanceInformation?: StringFieldUpdateOperationsInput | string
-    creditorAccountId?: NullableStringFieldUpdateOperationsInput | string | null
-    cancellationId?: NullableStringFieldUpdateOperationsInput | string | null
+    creditorAccount?: CreditorAccountUncheckedUpdateOneWithoutPaymentNestedInput
+    debtorAccount?: DebtorAccountUncheckedUpdateOneWithoutPaymentNestedInput
+    cancellation?: CancellationUncheckedUpdateOneWithoutPaymentNestedInput
   }
 
   export type PaymentCreateManyInput = {
-    id?: string
-    paymentId: string
+    paymentId?: string
     endToEndId: string
     consentId: string
-    creationDateTime: Date | string
-    statusUpdateDateTime: Date | string
+    creationDateTime?: Date | string
+    statusUpdateDateTime?: Date | string
     proxy: string
     ibgeTownCode: string
     status: string
@@ -4702,12 +5742,9 @@ export namespace Prisma {
     paymentCurrency: string
     transactionIdentification: string
     remittanceInformation: string
-    creditorAccountId?: string | null
-    cancellationId?: string | null
   }
 
   export type PaymentUpdateManyMutationInput = {
-    paymentId?: StringFieldUpdateOperationsInput | string
     endToEndId?: StringFieldUpdateOperationsInput | string
     consentId?: StringFieldUpdateOperationsInput | string
     creationDateTime?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -4726,7 +5763,6 @@ export namespace Prisma {
   }
 
   export type PaymentUncheckedUpdateManyInput = {
-    paymentId?: StringFieldUpdateOperationsInput | string
     endToEndId?: StringFieldUpdateOperationsInput | string
     consentId?: StringFieldUpdateOperationsInput | string
     creationDateTime?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -4742,8 +5778,6 @@ export namespace Prisma {
     paymentCurrency?: StringFieldUpdateOperationsInput | string
     transactionIdentification?: StringFieldUpdateOperationsInput | string
     remittanceInformation?: StringFieldUpdateOperationsInput | string
-    creditorAccountId?: NullableStringFieldUpdateOperationsInput | string | null
-    cancellationId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type CreditorAccountCreateInput = {
@@ -4752,7 +5786,7 @@ export namespace Prisma {
     issuer: string
     number: string
     accountType: string
-    Payment?: PaymentCreateNestedManyWithoutCreditorAccountInput
+    Payment: PaymentCreateNestedOneWithoutCreditorAccountInput
   }
 
   export type CreditorAccountUncheckedCreateInput = {
@@ -4761,7 +5795,7 @@ export namespace Prisma {
     issuer: string
     number: string
     accountType: string
-    Payment?: PaymentUncheckedCreateNestedManyWithoutCreditorAccountInput
+    paymentId: string
   }
 
   export type CreditorAccountUpdateInput = {
@@ -4769,7 +5803,7 @@ export namespace Prisma {
     issuer?: StringFieldUpdateOperationsInput | string
     number?: StringFieldUpdateOperationsInput | string
     accountType?: StringFieldUpdateOperationsInput | string
-    Payment?: PaymentUpdateManyWithoutCreditorAccountNestedInput
+    Payment?: PaymentUpdateOneRequiredWithoutCreditorAccountNestedInput
   }
 
   export type CreditorAccountUncheckedUpdateInput = {
@@ -4777,7 +5811,7 @@ export namespace Prisma {
     issuer?: StringFieldUpdateOperationsInput | string
     number?: StringFieldUpdateOperationsInput | string
     accountType?: StringFieldUpdateOperationsInput | string
-    Payment?: PaymentUncheckedUpdateManyWithoutCreditorAccountNestedInput
+    paymentId?: StringFieldUpdateOperationsInput | string
   }
 
   export type CreditorAccountCreateManyInput = {
@@ -4786,6 +5820,7 @@ export namespace Prisma {
     issuer: string
     number: string
     accountType: string
+    paymentId: string
   }
 
   export type CreditorAccountUpdateManyMutationInput = {
@@ -4800,6 +5835,65 @@ export namespace Prisma {
     issuer?: StringFieldUpdateOperationsInput | string
     number?: StringFieldUpdateOperationsInput | string
     accountType?: StringFieldUpdateOperationsInput | string
+    paymentId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type DebtorAccountCreateInput = {
+    id?: string
+    ispb: string
+    issuer: string
+    number: string
+    accountType: string
+    Payment: PaymentCreateNestedOneWithoutDebtorAccountInput
+  }
+
+  export type DebtorAccountUncheckedCreateInput = {
+    id?: string
+    ispb: string
+    issuer: string
+    number: string
+    accountType: string
+    paymentId: string
+  }
+
+  export type DebtorAccountUpdateInput = {
+    ispb?: StringFieldUpdateOperationsInput | string
+    issuer?: StringFieldUpdateOperationsInput | string
+    number?: StringFieldUpdateOperationsInput | string
+    accountType?: StringFieldUpdateOperationsInput | string
+    Payment?: PaymentUpdateOneRequiredWithoutDebtorAccountNestedInput
+  }
+
+  export type DebtorAccountUncheckedUpdateInput = {
+    ispb?: StringFieldUpdateOperationsInput | string
+    issuer?: StringFieldUpdateOperationsInput | string
+    number?: StringFieldUpdateOperationsInput | string
+    accountType?: StringFieldUpdateOperationsInput | string
+    paymentId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type DebtorAccountCreateManyInput = {
+    id?: string
+    ispb: string
+    issuer: string
+    number: string
+    accountType: string
+    paymentId: string
+  }
+
+  export type DebtorAccountUpdateManyMutationInput = {
+    ispb?: StringFieldUpdateOperationsInput | string
+    issuer?: StringFieldUpdateOperationsInput | string
+    number?: StringFieldUpdateOperationsInput | string
+    accountType?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type DebtorAccountUncheckedUpdateManyInput = {
+    ispb?: StringFieldUpdateOperationsInput | string
+    issuer?: StringFieldUpdateOperationsInput | string
+    number?: StringFieldUpdateOperationsInput | string
+    accountType?: StringFieldUpdateOperationsInput | string
+    paymentId?: StringFieldUpdateOperationsInput | string
   }
 
   export type CancellationCreateInput = {
@@ -4809,7 +5903,7 @@ export namespace Prisma {
     cancelledAt: Date | string
     cancelledByIdentification: string
     cancelledByRel: string
-    Payment?: PaymentCreateNestedManyWithoutCancellationInput
+    Payment: PaymentCreateNestedOneWithoutCancellationInput
   }
 
   export type CancellationUncheckedCreateInput = {
@@ -4819,7 +5913,7 @@ export namespace Prisma {
     cancelledAt: Date | string
     cancelledByIdentification: string
     cancelledByRel: string
-    Payment?: PaymentUncheckedCreateNestedManyWithoutCancellationInput
+    paymentId: string
   }
 
   export type CancellationUpdateInput = {
@@ -4828,7 +5922,7 @@ export namespace Prisma {
     cancelledAt?: DateTimeFieldUpdateOperationsInput | Date | string
     cancelledByIdentification?: StringFieldUpdateOperationsInput | string
     cancelledByRel?: StringFieldUpdateOperationsInput | string
-    Payment?: PaymentUpdateManyWithoutCancellationNestedInput
+    Payment?: PaymentUpdateOneRequiredWithoutCancellationNestedInput
   }
 
   export type CancellationUncheckedUpdateInput = {
@@ -4837,7 +5931,7 @@ export namespace Prisma {
     cancelledAt?: DateTimeFieldUpdateOperationsInput | Date | string
     cancelledByIdentification?: StringFieldUpdateOperationsInput | string
     cancelledByRel?: StringFieldUpdateOperationsInput | string
-    Payment?: PaymentUncheckedUpdateManyWithoutCancellationNestedInput
+    paymentId?: StringFieldUpdateOperationsInput | string
   }
 
   export type CancellationCreateManyInput = {
@@ -4847,6 +5941,7 @@ export namespace Prisma {
     cancelledAt: Date | string
     cancelledByIdentification: string
     cancelledByRel: string
+    paymentId: string
   }
 
   export type CancellationUpdateManyMutationInput = {
@@ -4863,6 +5958,7 @@ export namespace Prisma {
     cancelledAt?: DateTimeFieldUpdateOperationsInput | Date | string
     cancelledByIdentification?: StringFieldUpdateOperationsInput | string
     cancelledByRel?: StringFieldUpdateOperationsInput | string
+    paymentId?: StringFieldUpdateOperationsInput | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -4912,13 +6008,17 @@ export namespace Prisma {
     isNot?: CreditorAccountWhereInput | null
   }
 
+  export type DebtorAccountNullableRelationFilter = {
+    is?: DebtorAccountWhereInput | null
+    isNot?: DebtorAccountWhereInput | null
+  }
+
   export type CancellationNullableRelationFilter = {
     is?: CancellationWhereInput | null
     isNot?: CancellationWhereInput | null
   }
 
   export type PaymentCountOrderByAggregateInput = {
-    id?: SortOrder
     paymentId?: SortOrder
     endToEndId?: SortOrder
     consentId?: SortOrder
@@ -4935,12 +6035,9 @@ export namespace Prisma {
     paymentCurrency?: SortOrder
     transactionIdentification?: SortOrder
     remittanceInformation?: SortOrder
-    creditorAccountId?: SortOrder
-    cancellationId?: SortOrder
   }
 
   export type PaymentMaxOrderByAggregateInput = {
-    id?: SortOrder
     paymentId?: SortOrder
     endToEndId?: SortOrder
     consentId?: SortOrder
@@ -4957,12 +6054,9 @@ export namespace Prisma {
     paymentCurrency?: SortOrder
     transactionIdentification?: SortOrder
     remittanceInformation?: SortOrder
-    creditorAccountId?: SortOrder
-    cancellationId?: SortOrder
   }
 
   export type PaymentMinOrderByAggregateInput = {
-    id?: SortOrder
     paymentId?: SortOrder
     endToEndId?: SortOrder
     consentId?: SortOrder
@@ -4979,8 +6073,6 @@ export namespace Prisma {
     paymentCurrency?: SortOrder
     transactionIdentification?: SortOrder
     remittanceInformation?: SortOrder
-    creditorAccountId?: SortOrder
-    cancellationId?: SortOrder
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -5034,14 +6126,9 @@ export namespace Prisma {
     isSet?: boolean
   }
 
-  export type PaymentListRelationFilter = {
-    every?: PaymentWhereInput
-    some?: PaymentWhereInput
-    none?: PaymentWhereInput
-  }
-
-  export type PaymentOrderByRelationAggregateInput = {
-    _count?: SortOrder
+  export type PaymentRelationFilter = {
+    is?: PaymentWhereInput
+    isNot?: PaymentWhereInput
   }
 
   export type CreditorAccountCountOrderByAggregateInput = {
@@ -5050,6 +6137,7 @@ export namespace Prisma {
     issuer?: SortOrder
     number?: SortOrder
     accountType?: SortOrder
+    paymentId?: SortOrder
   }
 
   export type CreditorAccountMaxOrderByAggregateInput = {
@@ -5058,6 +6146,7 @@ export namespace Prisma {
     issuer?: SortOrder
     number?: SortOrder
     accountType?: SortOrder
+    paymentId?: SortOrder
   }
 
   export type CreditorAccountMinOrderByAggregateInput = {
@@ -5066,6 +6155,34 @@ export namespace Prisma {
     issuer?: SortOrder
     number?: SortOrder
     accountType?: SortOrder
+    paymentId?: SortOrder
+  }
+
+  export type DebtorAccountCountOrderByAggregateInput = {
+    id?: SortOrder
+    ispb?: SortOrder
+    issuer?: SortOrder
+    number?: SortOrder
+    accountType?: SortOrder
+    paymentId?: SortOrder
+  }
+
+  export type DebtorAccountMaxOrderByAggregateInput = {
+    id?: SortOrder
+    ispb?: SortOrder
+    issuer?: SortOrder
+    number?: SortOrder
+    accountType?: SortOrder
+    paymentId?: SortOrder
+  }
+
+  export type DebtorAccountMinOrderByAggregateInput = {
+    id?: SortOrder
+    ispb?: SortOrder
+    issuer?: SortOrder
+    number?: SortOrder
+    accountType?: SortOrder
+    paymentId?: SortOrder
   }
 
   export type CancellationCountOrderByAggregateInput = {
@@ -5075,6 +6192,7 @@ export namespace Prisma {
     cancelledAt?: SortOrder
     cancelledByIdentification?: SortOrder
     cancelledByRel?: SortOrder
+    paymentId?: SortOrder
   }
 
   export type CancellationMaxOrderByAggregateInput = {
@@ -5084,6 +6202,7 @@ export namespace Prisma {
     cancelledAt?: SortOrder
     cancelledByIdentification?: SortOrder
     cancelledByRel?: SortOrder
+    paymentId?: SortOrder
   }
 
   export type CancellationMinOrderByAggregateInput = {
@@ -5093,6 +6212,7 @@ export namespace Prisma {
     cancelledAt?: SortOrder
     cancelledByIdentification?: SortOrder
     cancelledByRel?: SortOrder
+    paymentId?: SortOrder
   }
 
   export type CreditorAccountCreateNestedOneWithoutPaymentInput = {
@@ -5101,7 +6221,31 @@ export namespace Prisma {
     connect?: CreditorAccountWhereUniqueInput
   }
 
+  export type DebtorAccountCreateNestedOneWithoutPaymentInput = {
+    create?: XOR<DebtorAccountCreateWithoutPaymentInput, DebtorAccountUncheckedCreateWithoutPaymentInput>
+    connectOrCreate?: DebtorAccountCreateOrConnectWithoutPaymentInput
+    connect?: DebtorAccountWhereUniqueInput
+  }
+
   export type CancellationCreateNestedOneWithoutPaymentInput = {
+    create?: XOR<CancellationCreateWithoutPaymentInput, CancellationUncheckedCreateWithoutPaymentInput>
+    connectOrCreate?: CancellationCreateOrConnectWithoutPaymentInput
+    connect?: CancellationWhereUniqueInput
+  }
+
+  export type CreditorAccountUncheckedCreateNestedOneWithoutPaymentInput = {
+    create?: XOR<CreditorAccountCreateWithoutPaymentInput, CreditorAccountUncheckedCreateWithoutPaymentInput>
+    connectOrCreate?: CreditorAccountCreateOrConnectWithoutPaymentInput
+    connect?: CreditorAccountWhereUniqueInput
+  }
+
+  export type DebtorAccountUncheckedCreateNestedOneWithoutPaymentInput = {
+    create?: XOR<DebtorAccountCreateWithoutPaymentInput, DebtorAccountUncheckedCreateWithoutPaymentInput>
+    connectOrCreate?: DebtorAccountCreateOrConnectWithoutPaymentInput
+    connect?: DebtorAccountWhereUniqueInput
+  }
+
+  export type CancellationUncheckedCreateNestedOneWithoutPaymentInput = {
     create?: XOR<CancellationCreateWithoutPaymentInput, CancellationUncheckedCreateWithoutPaymentInput>
     connectOrCreate?: CancellationCreateOrConnectWithoutPaymentInput
     connect?: CancellationWhereUniqueInput
@@ -5124,104 +6268,102 @@ export namespace Prisma {
     create?: XOR<CreditorAccountCreateWithoutPaymentInput, CreditorAccountUncheckedCreateWithoutPaymentInput>
     connectOrCreate?: CreditorAccountCreateOrConnectWithoutPaymentInput
     upsert?: CreditorAccountUpsertWithoutPaymentInput
-    disconnect?: boolean
+    disconnect?: CreditorAccountWhereInput | boolean
     delete?: CreditorAccountWhereInput | boolean
     connect?: CreditorAccountWhereUniqueInput
     update?: XOR<XOR<CreditorAccountUpdateToOneWithWhereWithoutPaymentInput, CreditorAccountUpdateWithoutPaymentInput>, CreditorAccountUncheckedUpdateWithoutPaymentInput>
+  }
+
+  export type DebtorAccountUpdateOneWithoutPaymentNestedInput = {
+    create?: XOR<DebtorAccountCreateWithoutPaymentInput, DebtorAccountUncheckedCreateWithoutPaymentInput>
+    connectOrCreate?: DebtorAccountCreateOrConnectWithoutPaymentInput
+    upsert?: DebtorAccountUpsertWithoutPaymentInput
+    disconnect?: DebtorAccountWhereInput | boolean
+    delete?: DebtorAccountWhereInput | boolean
+    connect?: DebtorAccountWhereUniqueInput
+    update?: XOR<XOR<DebtorAccountUpdateToOneWithWhereWithoutPaymentInput, DebtorAccountUpdateWithoutPaymentInput>, DebtorAccountUncheckedUpdateWithoutPaymentInput>
   }
 
   export type CancellationUpdateOneWithoutPaymentNestedInput = {
     create?: XOR<CancellationCreateWithoutPaymentInput, CancellationUncheckedCreateWithoutPaymentInput>
     connectOrCreate?: CancellationCreateOrConnectWithoutPaymentInput
     upsert?: CancellationUpsertWithoutPaymentInput
-    disconnect?: boolean
+    disconnect?: CancellationWhereInput | boolean
     delete?: CancellationWhereInput | boolean
     connect?: CancellationWhereUniqueInput
     update?: XOR<XOR<CancellationUpdateToOneWithWhereWithoutPaymentInput, CancellationUpdateWithoutPaymentInput>, CancellationUncheckedUpdateWithoutPaymentInput>
   }
 
-  export type PaymentCreateNestedManyWithoutCreditorAccountInput = {
-    create?: XOR<PaymentCreateWithoutCreditorAccountInput, PaymentUncheckedCreateWithoutCreditorAccountInput> | PaymentCreateWithoutCreditorAccountInput[] | PaymentUncheckedCreateWithoutCreditorAccountInput[]
-    connectOrCreate?: PaymentCreateOrConnectWithoutCreditorAccountInput | PaymentCreateOrConnectWithoutCreditorAccountInput[]
-    createMany?: PaymentCreateManyCreditorAccountInputEnvelope
-    connect?: PaymentWhereUniqueInput | PaymentWhereUniqueInput[]
+  export type CreditorAccountUncheckedUpdateOneWithoutPaymentNestedInput = {
+    create?: XOR<CreditorAccountCreateWithoutPaymentInput, CreditorAccountUncheckedCreateWithoutPaymentInput>
+    connectOrCreate?: CreditorAccountCreateOrConnectWithoutPaymentInput
+    upsert?: CreditorAccountUpsertWithoutPaymentInput
+    disconnect?: CreditorAccountWhereInput | boolean
+    delete?: CreditorAccountWhereInput | boolean
+    connect?: CreditorAccountWhereUniqueInput
+    update?: XOR<XOR<CreditorAccountUpdateToOneWithWhereWithoutPaymentInput, CreditorAccountUpdateWithoutPaymentInput>, CreditorAccountUncheckedUpdateWithoutPaymentInput>
   }
 
-  export type PaymentUncheckedCreateNestedManyWithoutCreditorAccountInput = {
-    create?: XOR<PaymentCreateWithoutCreditorAccountInput, PaymentUncheckedCreateWithoutCreditorAccountInput> | PaymentCreateWithoutCreditorAccountInput[] | PaymentUncheckedCreateWithoutCreditorAccountInput[]
-    connectOrCreate?: PaymentCreateOrConnectWithoutCreditorAccountInput | PaymentCreateOrConnectWithoutCreditorAccountInput[]
-    createMany?: PaymentCreateManyCreditorAccountInputEnvelope
-    connect?: PaymentWhereUniqueInput | PaymentWhereUniqueInput[]
+  export type DebtorAccountUncheckedUpdateOneWithoutPaymentNestedInput = {
+    create?: XOR<DebtorAccountCreateWithoutPaymentInput, DebtorAccountUncheckedCreateWithoutPaymentInput>
+    connectOrCreate?: DebtorAccountCreateOrConnectWithoutPaymentInput
+    upsert?: DebtorAccountUpsertWithoutPaymentInput
+    disconnect?: DebtorAccountWhereInput | boolean
+    delete?: DebtorAccountWhereInput | boolean
+    connect?: DebtorAccountWhereUniqueInput
+    update?: XOR<XOR<DebtorAccountUpdateToOneWithWhereWithoutPaymentInput, DebtorAccountUpdateWithoutPaymentInput>, DebtorAccountUncheckedUpdateWithoutPaymentInput>
   }
 
-  export type PaymentUpdateManyWithoutCreditorAccountNestedInput = {
-    create?: XOR<PaymentCreateWithoutCreditorAccountInput, PaymentUncheckedCreateWithoutCreditorAccountInput> | PaymentCreateWithoutCreditorAccountInput[] | PaymentUncheckedCreateWithoutCreditorAccountInput[]
-    connectOrCreate?: PaymentCreateOrConnectWithoutCreditorAccountInput | PaymentCreateOrConnectWithoutCreditorAccountInput[]
-    upsert?: PaymentUpsertWithWhereUniqueWithoutCreditorAccountInput | PaymentUpsertWithWhereUniqueWithoutCreditorAccountInput[]
-    createMany?: PaymentCreateManyCreditorAccountInputEnvelope
-    set?: PaymentWhereUniqueInput | PaymentWhereUniqueInput[]
-    disconnect?: PaymentWhereUniqueInput | PaymentWhereUniqueInput[]
-    delete?: PaymentWhereUniqueInput | PaymentWhereUniqueInput[]
-    connect?: PaymentWhereUniqueInput | PaymentWhereUniqueInput[]
-    update?: PaymentUpdateWithWhereUniqueWithoutCreditorAccountInput | PaymentUpdateWithWhereUniqueWithoutCreditorAccountInput[]
-    updateMany?: PaymentUpdateManyWithWhereWithoutCreditorAccountInput | PaymentUpdateManyWithWhereWithoutCreditorAccountInput[]
-    deleteMany?: PaymentScalarWhereInput | PaymentScalarWhereInput[]
+  export type CancellationUncheckedUpdateOneWithoutPaymentNestedInput = {
+    create?: XOR<CancellationCreateWithoutPaymentInput, CancellationUncheckedCreateWithoutPaymentInput>
+    connectOrCreate?: CancellationCreateOrConnectWithoutPaymentInput
+    upsert?: CancellationUpsertWithoutPaymentInput
+    disconnect?: CancellationWhereInput | boolean
+    delete?: CancellationWhereInput | boolean
+    connect?: CancellationWhereUniqueInput
+    update?: XOR<XOR<CancellationUpdateToOneWithWhereWithoutPaymentInput, CancellationUpdateWithoutPaymentInput>, CancellationUncheckedUpdateWithoutPaymentInput>
   }
 
-  export type PaymentUncheckedUpdateManyWithoutCreditorAccountNestedInput = {
-    create?: XOR<PaymentCreateWithoutCreditorAccountInput, PaymentUncheckedCreateWithoutCreditorAccountInput> | PaymentCreateWithoutCreditorAccountInput[] | PaymentUncheckedCreateWithoutCreditorAccountInput[]
-    connectOrCreate?: PaymentCreateOrConnectWithoutCreditorAccountInput | PaymentCreateOrConnectWithoutCreditorAccountInput[]
-    upsert?: PaymentUpsertWithWhereUniqueWithoutCreditorAccountInput | PaymentUpsertWithWhereUniqueWithoutCreditorAccountInput[]
-    createMany?: PaymentCreateManyCreditorAccountInputEnvelope
-    set?: PaymentWhereUniqueInput | PaymentWhereUniqueInput[]
-    disconnect?: PaymentWhereUniqueInput | PaymentWhereUniqueInput[]
-    delete?: PaymentWhereUniqueInput | PaymentWhereUniqueInput[]
-    connect?: PaymentWhereUniqueInput | PaymentWhereUniqueInput[]
-    update?: PaymentUpdateWithWhereUniqueWithoutCreditorAccountInput | PaymentUpdateWithWhereUniqueWithoutCreditorAccountInput[]
-    updateMany?: PaymentUpdateManyWithWhereWithoutCreditorAccountInput | PaymentUpdateManyWithWhereWithoutCreditorAccountInput[]
-    deleteMany?: PaymentScalarWhereInput | PaymentScalarWhereInput[]
+  export type PaymentCreateNestedOneWithoutCreditorAccountInput = {
+    create?: XOR<PaymentCreateWithoutCreditorAccountInput, PaymentUncheckedCreateWithoutCreditorAccountInput>
+    connectOrCreate?: PaymentCreateOrConnectWithoutCreditorAccountInput
+    connect?: PaymentWhereUniqueInput
   }
 
-  export type PaymentCreateNestedManyWithoutCancellationInput = {
-    create?: XOR<PaymentCreateWithoutCancellationInput, PaymentUncheckedCreateWithoutCancellationInput> | PaymentCreateWithoutCancellationInput[] | PaymentUncheckedCreateWithoutCancellationInput[]
-    connectOrCreate?: PaymentCreateOrConnectWithoutCancellationInput | PaymentCreateOrConnectWithoutCancellationInput[]
-    createMany?: PaymentCreateManyCancellationInputEnvelope
-    connect?: PaymentWhereUniqueInput | PaymentWhereUniqueInput[]
+  export type PaymentUpdateOneRequiredWithoutCreditorAccountNestedInput = {
+    create?: XOR<PaymentCreateWithoutCreditorAccountInput, PaymentUncheckedCreateWithoutCreditorAccountInput>
+    connectOrCreate?: PaymentCreateOrConnectWithoutCreditorAccountInput
+    upsert?: PaymentUpsertWithoutCreditorAccountInput
+    connect?: PaymentWhereUniqueInput
+    update?: XOR<XOR<PaymentUpdateToOneWithWhereWithoutCreditorAccountInput, PaymentUpdateWithoutCreditorAccountInput>, PaymentUncheckedUpdateWithoutCreditorAccountInput>
   }
 
-  export type PaymentUncheckedCreateNestedManyWithoutCancellationInput = {
-    create?: XOR<PaymentCreateWithoutCancellationInput, PaymentUncheckedCreateWithoutCancellationInput> | PaymentCreateWithoutCancellationInput[] | PaymentUncheckedCreateWithoutCancellationInput[]
-    connectOrCreate?: PaymentCreateOrConnectWithoutCancellationInput | PaymentCreateOrConnectWithoutCancellationInput[]
-    createMany?: PaymentCreateManyCancellationInputEnvelope
-    connect?: PaymentWhereUniqueInput | PaymentWhereUniqueInput[]
+  export type PaymentCreateNestedOneWithoutDebtorAccountInput = {
+    create?: XOR<PaymentCreateWithoutDebtorAccountInput, PaymentUncheckedCreateWithoutDebtorAccountInput>
+    connectOrCreate?: PaymentCreateOrConnectWithoutDebtorAccountInput
+    connect?: PaymentWhereUniqueInput
   }
 
-  export type PaymentUpdateManyWithoutCancellationNestedInput = {
-    create?: XOR<PaymentCreateWithoutCancellationInput, PaymentUncheckedCreateWithoutCancellationInput> | PaymentCreateWithoutCancellationInput[] | PaymentUncheckedCreateWithoutCancellationInput[]
-    connectOrCreate?: PaymentCreateOrConnectWithoutCancellationInput | PaymentCreateOrConnectWithoutCancellationInput[]
-    upsert?: PaymentUpsertWithWhereUniqueWithoutCancellationInput | PaymentUpsertWithWhereUniqueWithoutCancellationInput[]
-    createMany?: PaymentCreateManyCancellationInputEnvelope
-    set?: PaymentWhereUniqueInput | PaymentWhereUniqueInput[]
-    disconnect?: PaymentWhereUniqueInput | PaymentWhereUniqueInput[]
-    delete?: PaymentWhereUniqueInput | PaymentWhereUniqueInput[]
-    connect?: PaymentWhereUniqueInput | PaymentWhereUniqueInput[]
-    update?: PaymentUpdateWithWhereUniqueWithoutCancellationInput | PaymentUpdateWithWhereUniqueWithoutCancellationInput[]
-    updateMany?: PaymentUpdateManyWithWhereWithoutCancellationInput | PaymentUpdateManyWithWhereWithoutCancellationInput[]
-    deleteMany?: PaymentScalarWhereInput | PaymentScalarWhereInput[]
+  export type PaymentUpdateOneRequiredWithoutDebtorAccountNestedInput = {
+    create?: XOR<PaymentCreateWithoutDebtorAccountInput, PaymentUncheckedCreateWithoutDebtorAccountInput>
+    connectOrCreate?: PaymentCreateOrConnectWithoutDebtorAccountInput
+    upsert?: PaymentUpsertWithoutDebtorAccountInput
+    connect?: PaymentWhereUniqueInput
+    update?: XOR<XOR<PaymentUpdateToOneWithWhereWithoutDebtorAccountInput, PaymentUpdateWithoutDebtorAccountInput>, PaymentUncheckedUpdateWithoutDebtorAccountInput>
   }
 
-  export type PaymentUncheckedUpdateManyWithoutCancellationNestedInput = {
-    create?: XOR<PaymentCreateWithoutCancellationInput, PaymentUncheckedCreateWithoutCancellationInput> | PaymentCreateWithoutCancellationInput[] | PaymentUncheckedCreateWithoutCancellationInput[]
-    connectOrCreate?: PaymentCreateOrConnectWithoutCancellationInput | PaymentCreateOrConnectWithoutCancellationInput[]
-    upsert?: PaymentUpsertWithWhereUniqueWithoutCancellationInput | PaymentUpsertWithWhereUniqueWithoutCancellationInput[]
-    createMany?: PaymentCreateManyCancellationInputEnvelope
-    set?: PaymentWhereUniqueInput | PaymentWhereUniqueInput[]
-    disconnect?: PaymentWhereUniqueInput | PaymentWhereUniqueInput[]
-    delete?: PaymentWhereUniqueInput | PaymentWhereUniqueInput[]
-    connect?: PaymentWhereUniqueInput | PaymentWhereUniqueInput[]
-    update?: PaymentUpdateWithWhereUniqueWithoutCancellationInput | PaymentUpdateWithWhereUniqueWithoutCancellationInput[]
-    updateMany?: PaymentUpdateManyWithWhereWithoutCancellationInput | PaymentUpdateManyWithWhereWithoutCancellationInput[]
-    deleteMany?: PaymentScalarWhereInput | PaymentScalarWhereInput[]
+  export type PaymentCreateNestedOneWithoutCancellationInput = {
+    create?: XOR<PaymentCreateWithoutCancellationInput, PaymentUncheckedCreateWithoutCancellationInput>
+    connectOrCreate?: PaymentCreateOrConnectWithoutCancellationInput
+    connect?: PaymentWhereUniqueInput
+  }
+
+  export type PaymentUpdateOneRequiredWithoutCancellationNestedInput = {
+    create?: XOR<PaymentCreateWithoutCancellationInput, PaymentUncheckedCreateWithoutCancellationInput>
+    connectOrCreate?: PaymentCreateOrConnectWithoutCancellationInput
+    upsert?: PaymentUpsertWithoutCancellationInput
+    connect?: PaymentWhereUniqueInput
+    update?: XOR<XOR<PaymentUpdateToOneWithWhereWithoutCancellationInput, PaymentUpdateWithoutCancellationInput>, PaymentUncheckedUpdateWithoutCancellationInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -5357,6 +6499,27 @@ export namespace Prisma {
     create: XOR<CreditorAccountCreateWithoutPaymentInput, CreditorAccountUncheckedCreateWithoutPaymentInput>
   }
 
+  export type DebtorAccountCreateWithoutPaymentInput = {
+    id?: string
+    ispb: string
+    issuer: string
+    number: string
+    accountType: string
+  }
+
+  export type DebtorAccountUncheckedCreateWithoutPaymentInput = {
+    id?: string
+    ispb: string
+    issuer: string
+    number: string
+    accountType: string
+  }
+
+  export type DebtorAccountCreateOrConnectWithoutPaymentInput = {
+    where: DebtorAccountWhereUniqueInput
+    create: XOR<DebtorAccountCreateWithoutPaymentInput, DebtorAccountUncheckedCreateWithoutPaymentInput>
+  }
+
   export type CancellationCreateWithoutPaymentInput = {
     id?: string
     reason: string
@@ -5405,6 +6568,31 @@ export namespace Prisma {
     accountType?: StringFieldUpdateOperationsInput | string
   }
 
+  export type DebtorAccountUpsertWithoutPaymentInput = {
+    update: XOR<DebtorAccountUpdateWithoutPaymentInput, DebtorAccountUncheckedUpdateWithoutPaymentInput>
+    create: XOR<DebtorAccountCreateWithoutPaymentInput, DebtorAccountUncheckedCreateWithoutPaymentInput>
+    where?: DebtorAccountWhereInput
+  }
+
+  export type DebtorAccountUpdateToOneWithWhereWithoutPaymentInput = {
+    where?: DebtorAccountWhereInput
+    data: XOR<DebtorAccountUpdateWithoutPaymentInput, DebtorAccountUncheckedUpdateWithoutPaymentInput>
+  }
+
+  export type DebtorAccountUpdateWithoutPaymentInput = {
+    ispb?: StringFieldUpdateOperationsInput | string
+    issuer?: StringFieldUpdateOperationsInput | string
+    number?: StringFieldUpdateOperationsInput | string
+    accountType?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type DebtorAccountUncheckedUpdateWithoutPaymentInput = {
+    ispb?: StringFieldUpdateOperationsInput | string
+    issuer?: StringFieldUpdateOperationsInput | string
+    number?: StringFieldUpdateOperationsInput | string
+    accountType?: StringFieldUpdateOperationsInput | string
+  }
+
   export type CancellationUpsertWithoutPaymentInput = {
     update: XOR<CancellationUpdateWithoutPaymentInput, CancellationUncheckedUpdateWithoutPaymentInput>
     create: XOR<CancellationCreateWithoutPaymentInput, CancellationUncheckedCreateWithoutPaymentInput>
@@ -5433,12 +6621,11 @@ export namespace Prisma {
   }
 
   export type PaymentCreateWithoutCreditorAccountInput = {
-    id?: string
-    paymentId: string
+    paymentId?: string
     endToEndId: string
     consentId: string
-    creationDateTime: Date | string
-    statusUpdateDateTime: Date | string
+    creationDateTime?: Date | string
+    statusUpdateDateTime?: Date | string
     proxy: string
     ibgeTownCode: string
     status: string
@@ -5450,16 +6637,16 @@ export namespace Prisma {
     paymentCurrency: string
     transactionIdentification: string
     remittanceInformation: string
+    debtorAccount?: DebtorAccountCreateNestedOneWithoutPaymentInput
     cancellation?: CancellationCreateNestedOneWithoutPaymentInput
   }
 
   export type PaymentUncheckedCreateWithoutCreditorAccountInput = {
-    id?: string
-    paymentId: string
+    paymentId?: string
     endToEndId: string
     consentId: string
-    creationDateTime: Date | string
-    statusUpdateDateTime: Date | string
+    creationDateTime?: Date | string
+    statusUpdateDateTime?: Date | string
     proxy: string
     ibgeTownCode: string
     status: string
@@ -5471,7 +6658,8 @@ export namespace Prisma {
     paymentCurrency: string
     transactionIdentification: string
     remittanceInformation: string
-    cancellationId?: string | null
+    debtorAccount?: DebtorAccountUncheckedCreateNestedOneWithoutPaymentInput
+    cancellation?: CancellationUncheckedCreateNestedOneWithoutPaymentInput
   }
 
   export type PaymentCreateOrConnectWithoutCreditorAccountInput = {
@@ -5479,58 +6667,63 @@ export namespace Prisma {
     create: XOR<PaymentCreateWithoutCreditorAccountInput, PaymentUncheckedCreateWithoutCreditorAccountInput>
   }
 
-  export type PaymentCreateManyCreditorAccountInputEnvelope = {
-    data: PaymentCreateManyCreditorAccountInput | PaymentCreateManyCreditorAccountInput[]
-  }
-
-  export type PaymentUpsertWithWhereUniqueWithoutCreditorAccountInput = {
-    where: PaymentWhereUniqueInput
+  export type PaymentUpsertWithoutCreditorAccountInput = {
     update: XOR<PaymentUpdateWithoutCreditorAccountInput, PaymentUncheckedUpdateWithoutCreditorAccountInput>
     create: XOR<PaymentCreateWithoutCreditorAccountInput, PaymentUncheckedCreateWithoutCreditorAccountInput>
+    where?: PaymentWhereInput
   }
 
-  export type PaymentUpdateWithWhereUniqueWithoutCreditorAccountInput = {
-    where: PaymentWhereUniqueInput
+  export type PaymentUpdateToOneWithWhereWithoutCreditorAccountInput = {
+    where?: PaymentWhereInput
     data: XOR<PaymentUpdateWithoutCreditorAccountInput, PaymentUncheckedUpdateWithoutCreditorAccountInput>
   }
 
-  export type PaymentUpdateManyWithWhereWithoutCreditorAccountInput = {
-    where: PaymentScalarWhereInput
-    data: XOR<PaymentUpdateManyMutationInput, PaymentUncheckedUpdateManyWithoutCreditorAccountInput>
+  export type PaymentUpdateWithoutCreditorAccountInput = {
+    endToEndId?: StringFieldUpdateOperationsInput | string
+    consentId?: StringFieldUpdateOperationsInput | string
+    creationDateTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    statusUpdateDateTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    proxy?: StringFieldUpdateOperationsInput | string
+    ibgeTownCode?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    rejectionReasonCode?: NullableStringFieldUpdateOperationsInput | string | null
+    rejectionReasonDetail?: NullableStringFieldUpdateOperationsInput | string | null
+    localInstrument?: StringFieldUpdateOperationsInput | string
+    cnpjInitiator?: StringFieldUpdateOperationsInput | string
+    paymentAmount?: StringFieldUpdateOperationsInput | string
+    paymentCurrency?: StringFieldUpdateOperationsInput | string
+    transactionIdentification?: StringFieldUpdateOperationsInput | string
+    remittanceInformation?: StringFieldUpdateOperationsInput | string
+    debtorAccount?: DebtorAccountUpdateOneWithoutPaymentNestedInput
+    cancellation?: CancellationUpdateOneWithoutPaymentNestedInput
   }
 
-  export type PaymentScalarWhereInput = {
-    AND?: PaymentScalarWhereInput | PaymentScalarWhereInput[]
-    OR?: PaymentScalarWhereInput[]
-    NOT?: PaymentScalarWhereInput | PaymentScalarWhereInput[]
-    id?: StringFilter<"Payment"> | string
-    paymentId?: StringFilter<"Payment"> | string
-    endToEndId?: StringFilter<"Payment"> | string
-    consentId?: StringFilter<"Payment"> | string
-    creationDateTime?: DateTimeFilter<"Payment"> | Date | string
-    statusUpdateDateTime?: DateTimeFilter<"Payment"> | Date | string
-    proxy?: StringFilter<"Payment"> | string
-    ibgeTownCode?: StringFilter<"Payment"> | string
-    status?: StringFilter<"Payment"> | string
-    rejectionReasonCode?: StringNullableFilter<"Payment"> | string | null
-    rejectionReasonDetail?: StringNullableFilter<"Payment"> | string | null
-    localInstrument?: StringFilter<"Payment"> | string
-    cnpjInitiator?: StringFilter<"Payment"> | string
-    paymentAmount?: StringFilter<"Payment"> | string
-    paymentCurrency?: StringFilter<"Payment"> | string
-    transactionIdentification?: StringFilter<"Payment"> | string
-    remittanceInformation?: StringFilter<"Payment"> | string
-    creditorAccountId?: StringNullableFilter<"Payment"> | string | null
-    cancellationId?: StringNullableFilter<"Payment"> | string | null
+  export type PaymentUncheckedUpdateWithoutCreditorAccountInput = {
+    endToEndId?: StringFieldUpdateOperationsInput | string
+    consentId?: StringFieldUpdateOperationsInput | string
+    creationDateTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    statusUpdateDateTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    proxy?: StringFieldUpdateOperationsInput | string
+    ibgeTownCode?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    rejectionReasonCode?: NullableStringFieldUpdateOperationsInput | string | null
+    rejectionReasonDetail?: NullableStringFieldUpdateOperationsInput | string | null
+    localInstrument?: StringFieldUpdateOperationsInput | string
+    cnpjInitiator?: StringFieldUpdateOperationsInput | string
+    paymentAmount?: StringFieldUpdateOperationsInput | string
+    paymentCurrency?: StringFieldUpdateOperationsInput | string
+    transactionIdentification?: StringFieldUpdateOperationsInput | string
+    remittanceInformation?: StringFieldUpdateOperationsInput | string
+    debtorAccount?: DebtorAccountUncheckedUpdateOneWithoutPaymentNestedInput
+    cancellation?: CancellationUncheckedUpdateOneWithoutPaymentNestedInput
   }
 
-  export type PaymentCreateWithoutCancellationInput = {
-    id?: string
-    paymentId: string
+  export type PaymentCreateWithoutDebtorAccountInput = {
+    paymentId?: string
     endToEndId: string
     consentId: string
-    creationDateTime: Date | string
-    statusUpdateDateTime: Date | string
+    creationDateTime?: Date | string
+    statusUpdateDateTime?: Date | string
     proxy: string
     ibgeTownCode: string
     status: string
@@ -5543,15 +6736,15 @@ export namespace Prisma {
     transactionIdentification: string
     remittanceInformation: string
     creditorAccount?: CreditorAccountCreateNestedOneWithoutPaymentInput
+    cancellation?: CancellationCreateNestedOneWithoutPaymentInput
   }
 
-  export type PaymentUncheckedCreateWithoutCancellationInput = {
-    id?: string
-    paymentId: string
+  export type PaymentUncheckedCreateWithoutDebtorAccountInput = {
+    paymentId?: string
     endToEndId: string
     consentId: string
-    creationDateTime: Date | string
-    statusUpdateDateTime: Date | string
+    creationDateTime?: Date | string
+    statusUpdateDateTime?: Date | string
     proxy: string
     ibgeTownCode: string
     status: string
@@ -5563,138 +6756,27 @@ export namespace Prisma {
     paymentCurrency: string
     transactionIdentification: string
     remittanceInformation: string
-    creditorAccountId?: string | null
+    creditorAccount?: CreditorAccountUncheckedCreateNestedOneWithoutPaymentInput
+    cancellation?: CancellationUncheckedCreateNestedOneWithoutPaymentInput
   }
 
-  export type PaymentCreateOrConnectWithoutCancellationInput = {
+  export type PaymentCreateOrConnectWithoutDebtorAccountInput = {
     where: PaymentWhereUniqueInput
-    create: XOR<PaymentCreateWithoutCancellationInput, PaymentUncheckedCreateWithoutCancellationInput>
+    create: XOR<PaymentCreateWithoutDebtorAccountInput, PaymentUncheckedCreateWithoutDebtorAccountInput>
   }
 
-  export type PaymentCreateManyCancellationInputEnvelope = {
-    data: PaymentCreateManyCancellationInput | PaymentCreateManyCancellationInput[]
+  export type PaymentUpsertWithoutDebtorAccountInput = {
+    update: XOR<PaymentUpdateWithoutDebtorAccountInput, PaymentUncheckedUpdateWithoutDebtorAccountInput>
+    create: XOR<PaymentCreateWithoutDebtorAccountInput, PaymentUncheckedCreateWithoutDebtorAccountInput>
+    where?: PaymentWhereInput
   }
 
-  export type PaymentUpsertWithWhereUniqueWithoutCancellationInput = {
-    where: PaymentWhereUniqueInput
-    update: XOR<PaymentUpdateWithoutCancellationInput, PaymentUncheckedUpdateWithoutCancellationInput>
-    create: XOR<PaymentCreateWithoutCancellationInput, PaymentUncheckedCreateWithoutCancellationInput>
+  export type PaymentUpdateToOneWithWhereWithoutDebtorAccountInput = {
+    where?: PaymentWhereInput
+    data: XOR<PaymentUpdateWithoutDebtorAccountInput, PaymentUncheckedUpdateWithoutDebtorAccountInput>
   }
 
-  export type PaymentUpdateWithWhereUniqueWithoutCancellationInput = {
-    where: PaymentWhereUniqueInput
-    data: XOR<PaymentUpdateWithoutCancellationInput, PaymentUncheckedUpdateWithoutCancellationInput>
-  }
-
-  export type PaymentUpdateManyWithWhereWithoutCancellationInput = {
-    where: PaymentScalarWhereInput
-    data: XOR<PaymentUpdateManyMutationInput, PaymentUncheckedUpdateManyWithoutCancellationInput>
-  }
-
-  export type PaymentCreateManyCreditorAccountInput = {
-    id?: string
-    paymentId: string
-    endToEndId: string
-    consentId: string
-    creationDateTime: Date | string
-    statusUpdateDateTime: Date | string
-    proxy: string
-    ibgeTownCode: string
-    status: string
-    rejectionReasonCode?: string | null
-    rejectionReasonDetail?: string | null
-    localInstrument: string
-    cnpjInitiator: string
-    paymentAmount: string
-    paymentCurrency: string
-    transactionIdentification: string
-    remittanceInformation: string
-    cancellationId?: string | null
-  }
-
-  export type PaymentUpdateWithoutCreditorAccountInput = {
-    paymentId?: StringFieldUpdateOperationsInput | string
-    endToEndId?: StringFieldUpdateOperationsInput | string
-    consentId?: StringFieldUpdateOperationsInput | string
-    creationDateTime?: DateTimeFieldUpdateOperationsInput | Date | string
-    statusUpdateDateTime?: DateTimeFieldUpdateOperationsInput | Date | string
-    proxy?: StringFieldUpdateOperationsInput | string
-    ibgeTownCode?: StringFieldUpdateOperationsInput | string
-    status?: StringFieldUpdateOperationsInput | string
-    rejectionReasonCode?: NullableStringFieldUpdateOperationsInput | string | null
-    rejectionReasonDetail?: NullableStringFieldUpdateOperationsInput | string | null
-    localInstrument?: StringFieldUpdateOperationsInput | string
-    cnpjInitiator?: StringFieldUpdateOperationsInput | string
-    paymentAmount?: StringFieldUpdateOperationsInput | string
-    paymentCurrency?: StringFieldUpdateOperationsInput | string
-    transactionIdentification?: StringFieldUpdateOperationsInput | string
-    remittanceInformation?: StringFieldUpdateOperationsInput | string
-    cancellation?: CancellationUpdateOneWithoutPaymentNestedInput
-  }
-
-  export type PaymentUncheckedUpdateWithoutCreditorAccountInput = {
-    paymentId?: StringFieldUpdateOperationsInput | string
-    endToEndId?: StringFieldUpdateOperationsInput | string
-    consentId?: StringFieldUpdateOperationsInput | string
-    creationDateTime?: DateTimeFieldUpdateOperationsInput | Date | string
-    statusUpdateDateTime?: DateTimeFieldUpdateOperationsInput | Date | string
-    proxy?: StringFieldUpdateOperationsInput | string
-    ibgeTownCode?: StringFieldUpdateOperationsInput | string
-    status?: StringFieldUpdateOperationsInput | string
-    rejectionReasonCode?: NullableStringFieldUpdateOperationsInput | string | null
-    rejectionReasonDetail?: NullableStringFieldUpdateOperationsInput | string | null
-    localInstrument?: StringFieldUpdateOperationsInput | string
-    cnpjInitiator?: StringFieldUpdateOperationsInput | string
-    paymentAmount?: StringFieldUpdateOperationsInput | string
-    paymentCurrency?: StringFieldUpdateOperationsInput | string
-    transactionIdentification?: StringFieldUpdateOperationsInput | string
-    remittanceInformation?: StringFieldUpdateOperationsInput | string
-    cancellationId?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type PaymentUncheckedUpdateManyWithoutCreditorAccountInput = {
-    paymentId?: StringFieldUpdateOperationsInput | string
-    endToEndId?: StringFieldUpdateOperationsInput | string
-    consentId?: StringFieldUpdateOperationsInput | string
-    creationDateTime?: DateTimeFieldUpdateOperationsInput | Date | string
-    statusUpdateDateTime?: DateTimeFieldUpdateOperationsInput | Date | string
-    proxy?: StringFieldUpdateOperationsInput | string
-    ibgeTownCode?: StringFieldUpdateOperationsInput | string
-    status?: StringFieldUpdateOperationsInput | string
-    rejectionReasonCode?: NullableStringFieldUpdateOperationsInput | string | null
-    rejectionReasonDetail?: NullableStringFieldUpdateOperationsInput | string | null
-    localInstrument?: StringFieldUpdateOperationsInput | string
-    cnpjInitiator?: StringFieldUpdateOperationsInput | string
-    paymentAmount?: StringFieldUpdateOperationsInput | string
-    paymentCurrency?: StringFieldUpdateOperationsInput | string
-    transactionIdentification?: StringFieldUpdateOperationsInput | string
-    remittanceInformation?: StringFieldUpdateOperationsInput | string
-    cancellationId?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type PaymentCreateManyCancellationInput = {
-    id?: string
-    paymentId: string
-    endToEndId: string
-    consentId: string
-    creationDateTime: Date | string
-    statusUpdateDateTime: Date | string
-    proxy: string
-    ibgeTownCode: string
-    status: string
-    rejectionReasonCode?: string | null
-    rejectionReasonDetail?: string | null
-    localInstrument: string
-    cnpjInitiator: string
-    paymentAmount: string
-    paymentCurrency: string
-    transactionIdentification: string
-    remittanceInformation: string
-    creditorAccountId?: string | null
-  }
-
-  export type PaymentUpdateWithoutCancellationInput = {
-    paymentId?: StringFieldUpdateOperationsInput | string
+  export type PaymentUpdateWithoutDebtorAccountInput = {
     endToEndId?: StringFieldUpdateOperationsInput | string
     consentId?: StringFieldUpdateOperationsInput | string
     creationDateTime?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -5711,10 +6793,108 @@ export namespace Prisma {
     transactionIdentification?: StringFieldUpdateOperationsInput | string
     remittanceInformation?: StringFieldUpdateOperationsInput | string
     creditorAccount?: CreditorAccountUpdateOneWithoutPaymentNestedInput
+    cancellation?: CancellationUpdateOneWithoutPaymentNestedInput
+  }
+
+  export type PaymentUncheckedUpdateWithoutDebtorAccountInput = {
+    endToEndId?: StringFieldUpdateOperationsInput | string
+    consentId?: StringFieldUpdateOperationsInput | string
+    creationDateTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    statusUpdateDateTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    proxy?: StringFieldUpdateOperationsInput | string
+    ibgeTownCode?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    rejectionReasonCode?: NullableStringFieldUpdateOperationsInput | string | null
+    rejectionReasonDetail?: NullableStringFieldUpdateOperationsInput | string | null
+    localInstrument?: StringFieldUpdateOperationsInput | string
+    cnpjInitiator?: StringFieldUpdateOperationsInput | string
+    paymentAmount?: StringFieldUpdateOperationsInput | string
+    paymentCurrency?: StringFieldUpdateOperationsInput | string
+    transactionIdentification?: StringFieldUpdateOperationsInput | string
+    remittanceInformation?: StringFieldUpdateOperationsInput | string
+    creditorAccount?: CreditorAccountUncheckedUpdateOneWithoutPaymentNestedInput
+    cancellation?: CancellationUncheckedUpdateOneWithoutPaymentNestedInput
+  }
+
+  export type PaymentCreateWithoutCancellationInput = {
+    paymentId?: string
+    endToEndId: string
+    consentId: string
+    creationDateTime?: Date | string
+    statusUpdateDateTime?: Date | string
+    proxy: string
+    ibgeTownCode: string
+    status: string
+    rejectionReasonCode?: string | null
+    rejectionReasonDetail?: string | null
+    localInstrument: string
+    cnpjInitiator: string
+    paymentAmount: string
+    paymentCurrency: string
+    transactionIdentification: string
+    remittanceInformation: string
+    creditorAccount?: CreditorAccountCreateNestedOneWithoutPaymentInput
+    debtorAccount?: DebtorAccountCreateNestedOneWithoutPaymentInput
+  }
+
+  export type PaymentUncheckedCreateWithoutCancellationInput = {
+    paymentId?: string
+    endToEndId: string
+    consentId: string
+    creationDateTime?: Date | string
+    statusUpdateDateTime?: Date | string
+    proxy: string
+    ibgeTownCode: string
+    status: string
+    rejectionReasonCode?: string | null
+    rejectionReasonDetail?: string | null
+    localInstrument: string
+    cnpjInitiator: string
+    paymentAmount: string
+    paymentCurrency: string
+    transactionIdentification: string
+    remittanceInformation: string
+    creditorAccount?: CreditorAccountUncheckedCreateNestedOneWithoutPaymentInput
+    debtorAccount?: DebtorAccountUncheckedCreateNestedOneWithoutPaymentInput
+  }
+
+  export type PaymentCreateOrConnectWithoutCancellationInput = {
+    where: PaymentWhereUniqueInput
+    create: XOR<PaymentCreateWithoutCancellationInput, PaymentUncheckedCreateWithoutCancellationInput>
+  }
+
+  export type PaymentUpsertWithoutCancellationInput = {
+    update: XOR<PaymentUpdateWithoutCancellationInput, PaymentUncheckedUpdateWithoutCancellationInput>
+    create: XOR<PaymentCreateWithoutCancellationInput, PaymentUncheckedCreateWithoutCancellationInput>
+    where?: PaymentWhereInput
+  }
+
+  export type PaymentUpdateToOneWithWhereWithoutCancellationInput = {
+    where?: PaymentWhereInput
+    data: XOR<PaymentUpdateWithoutCancellationInput, PaymentUncheckedUpdateWithoutCancellationInput>
+  }
+
+  export type PaymentUpdateWithoutCancellationInput = {
+    endToEndId?: StringFieldUpdateOperationsInput | string
+    consentId?: StringFieldUpdateOperationsInput | string
+    creationDateTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    statusUpdateDateTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    proxy?: StringFieldUpdateOperationsInput | string
+    ibgeTownCode?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    rejectionReasonCode?: NullableStringFieldUpdateOperationsInput | string | null
+    rejectionReasonDetail?: NullableStringFieldUpdateOperationsInput | string | null
+    localInstrument?: StringFieldUpdateOperationsInput | string
+    cnpjInitiator?: StringFieldUpdateOperationsInput | string
+    paymentAmount?: StringFieldUpdateOperationsInput | string
+    paymentCurrency?: StringFieldUpdateOperationsInput | string
+    transactionIdentification?: StringFieldUpdateOperationsInput | string
+    remittanceInformation?: StringFieldUpdateOperationsInput | string
+    creditorAccount?: CreditorAccountUpdateOneWithoutPaymentNestedInput
+    debtorAccount?: DebtorAccountUpdateOneWithoutPaymentNestedInput
   }
 
   export type PaymentUncheckedUpdateWithoutCancellationInput = {
-    paymentId?: StringFieldUpdateOperationsInput | string
     endToEndId?: StringFieldUpdateOperationsInput | string
     consentId?: StringFieldUpdateOperationsInput | string
     creationDateTime?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -5730,27 +6910,8 @@ export namespace Prisma {
     paymentCurrency?: StringFieldUpdateOperationsInput | string
     transactionIdentification?: StringFieldUpdateOperationsInput | string
     remittanceInformation?: StringFieldUpdateOperationsInput | string
-    creditorAccountId?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type PaymentUncheckedUpdateManyWithoutCancellationInput = {
-    paymentId?: StringFieldUpdateOperationsInput | string
-    endToEndId?: StringFieldUpdateOperationsInput | string
-    consentId?: StringFieldUpdateOperationsInput | string
-    creationDateTime?: DateTimeFieldUpdateOperationsInput | Date | string
-    statusUpdateDateTime?: DateTimeFieldUpdateOperationsInput | Date | string
-    proxy?: StringFieldUpdateOperationsInput | string
-    ibgeTownCode?: StringFieldUpdateOperationsInput | string
-    status?: StringFieldUpdateOperationsInput | string
-    rejectionReasonCode?: NullableStringFieldUpdateOperationsInput | string | null
-    rejectionReasonDetail?: NullableStringFieldUpdateOperationsInput | string | null
-    localInstrument?: StringFieldUpdateOperationsInput | string
-    cnpjInitiator?: StringFieldUpdateOperationsInput | string
-    paymentAmount?: StringFieldUpdateOperationsInput | string
-    paymentCurrency?: StringFieldUpdateOperationsInput | string
-    transactionIdentification?: StringFieldUpdateOperationsInput | string
-    remittanceInformation?: StringFieldUpdateOperationsInput | string
-    creditorAccountId?: NullableStringFieldUpdateOperationsInput | string | null
+    creditorAccount?: CreditorAccountUncheckedUpdateOneWithoutPaymentNestedInput
+    debtorAccount?: DebtorAccountUncheckedUpdateOneWithoutPaymentNestedInput
   }
 
 
@@ -5759,14 +6920,6 @@ export namespace Prisma {
    * Aliases for legacy arg types
    */
     /**
-     * @deprecated Use CreditorAccountCountOutputTypeDefaultArgs instead
-     */
-    export type CreditorAccountCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = CreditorAccountCountOutputTypeDefaultArgs<ExtArgs>
-    /**
-     * @deprecated Use CancellationCountOutputTypeDefaultArgs instead
-     */
-    export type CancellationCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = CancellationCountOutputTypeDefaultArgs<ExtArgs>
-    /**
      * @deprecated Use PaymentDefaultArgs instead
      */
     export type PaymentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = PaymentDefaultArgs<ExtArgs>
@@ -5774,6 +6927,10 @@ export namespace Prisma {
      * @deprecated Use CreditorAccountDefaultArgs instead
      */
     export type CreditorAccountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = CreditorAccountDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use DebtorAccountDefaultArgs instead
+     */
+    export type DebtorAccountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = DebtorAccountDefaultArgs<ExtArgs>
     /**
      * @deprecated Use CancellationDefaultArgs instead
      */

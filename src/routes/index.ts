@@ -1,22 +1,22 @@
 import { Router } from "express";
-import { UserController, CustomerController } from "../controllers";
+import { PaymentController, CustomerController } from "../controllers";
 
 const router = Router();
 
 // Rota para obter todos os dados
-router.get("/users", UserController.getAllUsers);
+router.get("/payments", PaymentController.getAllPayments);
 
 // Rota para obter um dado por ID
-router.get("/users/:id", UserController.getUserId);
+router.get("/payments/:id", PaymentController.getPaymentId);
 
 // Rota para criar um novo dado
-router.post("/users", UserController.createUser);
+router.post("/payments", PaymentController.createPayment);
 
 // Rota para atualizar um dado por ID
-router.put("/users/:id", UserController.updateUser);
+router.put("/payments/:id", PaymentController.updatePayment);
 
 // Rota para remover um dado por ID
-router.delete("/users/:id", UserController.deleteUser);
+router.delete("/payments/:id", PaymentController.deletePayment);
 
 // Rota para obter todos os dados
 router.get("/customers", CustomerController.getAllCustomers);

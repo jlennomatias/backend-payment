@@ -101,7 +101,6 @@ Prisma.NullTypes = {
  */
 
 exports.Prisma.PaymentScalarFieldEnum = {
-  id: 'id',
   paymentId: 'paymentId',
   endToEndId: 'endToEndId',
   consentId: 'consentId',
@@ -117,9 +116,7 @@ exports.Prisma.PaymentScalarFieldEnum = {
   paymentAmount: 'paymentAmount',
   paymentCurrency: 'paymentCurrency',
   transactionIdentification: 'transactionIdentification',
-  remittanceInformation: 'remittanceInformation',
-  creditorAccountId: 'creditorAccountId',
-  cancellationId: 'cancellationId'
+  remittanceInformation: 'remittanceInformation'
 };
 
 exports.Prisma.CreditorAccountScalarFieldEnum = {
@@ -127,7 +124,17 @@ exports.Prisma.CreditorAccountScalarFieldEnum = {
   ispb: 'ispb',
   issuer: 'issuer',
   number: 'number',
-  accountType: 'accountType'
+  accountType: 'accountType',
+  paymentId: 'paymentId'
+};
+
+exports.Prisma.DebtorAccountScalarFieldEnum = {
+  id: 'id',
+  ispb: 'ispb',
+  issuer: 'issuer',
+  number: 'number',
+  accountType: 'accountType',
+  paymentId: 'paymentId'
 };
 
 exports.Prisma.CancellationScalarFieldEnum = {
@@ -136,7 +143,8 @@ exports.Prisma.CancellationScalarFieldEnum = {
   cancelledFrom: 'cancelledFrom',
   cancelledAt: 'cancelledAt',
   cancelledByIdentification: 'cancelledByIdentification',
-  cancelledByRel: 'cancelledByRel'
+  cancelledByRel: 'cancelledByRel',
+  paymentId: 'paymentId'
 };
 
 exports.Prisma.SortOrder = {
@@ -153,6 +161,7 @@ exports.Prisma.QueryMode = {
 exports.Prisma.ModelName = {
   Payment: 'Payment',
   CreditorAccount: 'CreditorAccount',
+  DebtorAccount: 'DebtorAccount',
   Cancellation: 'Cancellation'
 };
 
