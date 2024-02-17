@@ -5,7 +5,13 @@ class UpdatePaymentService {
     const paymentAtualizado = await prismaClient1.payment.update({
       where: { paymentId: paymentId },
       data: paymentPayload,
+      include: {
+        creditorAccount: true,
+        debtorAccount: true,
+        cancellation: true
+      }
     });
+
     return paymentAtualizado;
   }
 }

@@ -4,7 +4,6 @@ import { CreatePaymentService } from "../../services/createPaymentServices"
 import { UpdatePaymentService } from "../../services/updatePaymentServices"
 import { DeletePaymentService } from "../../services/deletePaymentServices"
 import { Prisma } from "../../../prisma/generated/client1";
-import { create } from "ts-node";
 
 const getAllPayments = async (req: Request, res: Response) => {
   try {
@@ -75,35 +74,37 @@ const getPaymentId = async (req: Request, res: Response) => {
 const updatePayment = async (req: Request, res: Response) => {
   try {
     const paymentId = req.params.id;
-    const {data} = req.body;
-
-    console.log(data);
+    const { data } = req.body;
 
     const paymentData: Prisma.PaymentUpdateInput = {
-      // endToEndId: data.endToEndId,
-      // consentId: "data.consentId",
-      // localInstrument: data.localInstrument,
-      // proxy: data.proxy,
-      // ibgeTownCode: data.ibgeTownCode,
-      // status: "data.status",
-      // rejectionReasonCode: "data.rejectionReasonCode",
-      // rejectionReasonDetail: "data",
-      // cnpjInitiator: data.cnpjInitiator,
-      // paymentAmount: data.payment.amount,
-      // paymentCurrency: data.payment.currency,
-      // transactionIdentification: data.transactionIdentification,
-      // remittanceInformation: data.remittanceInformation,
-      // creditorAccount: {
-      //   create: data.creditorAccount
-      // }
+      endToEndId: data.endToEndId,
+      consentId: data.consentId,
+      localInstrument: data.localInstrument,
+      proxy: data.proxy,
+      ibgeTownCode: data.ibgeTownCode,
+      status: data.status,
+      rejectionReasonCode: data.rejectionReasonCode,
+      rejectionReasonDetail: data.rejectionReasonDetail,
+      cnpjInitiator: data.cnpjInitiator,
+      paymentAmount: data.payment?.amount,
+      paymentCurrency: data.payment?.currency,
+      transactionIdentification: data.transactionIdentification,
+      remittanceInformation: data.remittanceInformation,
+      creditorAccount: {
+        update: data.creditorAccount
+      }
     };
 
-    const paymentService = new UpdatePaymentService();
-    const payment = await paymentService.execute(paymentId, data)
+    const getpaymentService = new GetPaymentIdService();
 
-    if (!payment) {
+    const getpayment = await getpaymentService.execute(paymentId);
+    if (!getpayment) {
       return res.status(404).json({ mensagem: "Usuário não encontrado" });
     }
+    
+    const paymentService = new UpdatePaymentService();
+    const payment = await paymentService.execute(paymentId, paymentData)
+
 
     res.status(200).json(payment);
   } catch (error) {
